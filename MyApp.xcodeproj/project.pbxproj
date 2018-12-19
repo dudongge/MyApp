@@ -36,6 +36,8 @@
 		F771E85421C9FDEB00DE2C28 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E85021C9FDEB00DE2C28 /* HomeViewController.m */; };
 		F771E85A21C9FDF100DE2C28 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E85621C9FDF100DE2C28 /* BaseViewController.m */; };
 		F771E85B21C9FDF100DE2C28 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E85721C9FDF100DE2C28 /* ViewController.m */; };
+		F771E85E21CA2F7900DE2C28 /* UIAleartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E85D21CA2F7900DE2C28 /* UIAleartViewController.m */; };
+		F771E86121CA2FB000DE2C28 /* MyAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E86021CA2FB000DE2C28 /* MyAleartView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,10 @@
 		F771E85721C9FDF100DE2C28 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F771E85821C9FDF100DE2C28 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		F771E85921C9FDF100DE2C28 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F771E85C21CA2F7900DE2C28 /* UIAleartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAleartViewController.h; sourceTree = "<group>"; };
+		F771E85D21CA2F7900DE2C28 /* UIAleartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIAleartViewController.m; sourceTree = "<group>"; };
+		F771E85F21CA2FB000DE2C28 /* MyAleartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAleartView.h; sourceTree = "<group>"; };
+		F771E86021CA2FB000DE2C28 /* MyAleartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAleartView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +248,7 @@
 				F771E81621C9F6FE00DE2C28 /* UIBarButtonItem+LLExtension.h */,
 				F771E81721C9F6FE00DE2C28 /* UIImage+LLExtension.m */,
 				F771E81821C9F6FE00DE2C28 /* Constant.h */,
+				F771E82321C9F6FE00DE2C28 /* Constant.m */,
 				F771E81A21C9F6FE00DE2C28 /* LLBaseShowView.h */,
 				F771E81B21C9F6FE00DE2C28 /* HXStaticConstant.m */,
 				F771E81C21C9F6FE00DE2C28 /* RefreshTool.m */,
@@ -250,7 +257,6 @@
 				F771E82021C9F6FE00DE2C28 /* HXNavBar.h */,
 				F771E82121C9F6FE00DE2C28 /* UIBarButtonItem+LLExtension.m */,
 				F771E82221C9F6FE00DE2C28 /* UIView+LLExtension.m */,
-				F771E82321C9F6FE00DE2C28 /* Constant.m */,
 				F771E82421C9F6FE00DE2C28 /* UIImage+LLExtension.h */,
 				F771E82621C9F6FE00DE2C28 /* RefreshTool.h */,
 				F771E82721C9F6FE00DE2C28 /* HXStaticConstant.h */,
@@ -295,9 +301,9 @@
 		F771E83E21C9FDDE00DE2C28 /* Tabar */ = {
 			isa = PBXGroup;
 			children = (
+				F771E84121C9FDDF00DE2C28 /* MyTabViewController.h */,
 				F771E83F21C9FDDF00DE2C28 /* MyTabViewController.m */,
 				F771E84021C9FDDF00DE2C28 /* LLNavigationController.m */,
-				F771E84121C9FDDF00DE2C28 /* MyTabViewController.h */,
 				F771E84221C9FDDF00DE2C28 /* LLNavigationController.h */,
 			);
 			path = Tabar;
@@ -317,6 +323,8 @@
 			children = (
 				F771E84721C9FDE400DE2C28 /* MyButton.h */,
 				F771E84821C9FDE400DE2C28 /* MyButton.m */,
+				F771E85F21CA2FB000DE2C28 /* MyAleartView.h */,
+				F771E86021CA2FB000DE2C28 /* MyAleartView.m */,
 			);
 			path = TestView;
 			sourceTree = "<group>";
@@ -324,8 +332,10 @@
 		F771E84921C9FDE400DE2C28 /* TestVC */ = {
 			isa = PBXGroup;
 			children = (
-				F771E84A21C9FDE400DE2C28 /* TestmMyButtonVCtrl.m */,
 				F771E84B21C9FDE400DE2C28 /* TestmMyButtonVCtrl.h */,
+				F771E84A21C9FDE400DE2C28 /* TestmMyButtonVCtrl.m */,
+				F771E85C21CA2F7900DE2C28 /* UIAleartViewController.h */,
+				F771E85D21CA2F7900DE2C28 /* UIAleartViewController.m */,
 			);
 			path = TestVC;
 			sourceTree = "<group>";
@@ -609,6 +619,7 @@
 				F771E83021C9F6FF00DE2C28 /* Foundation+Log.m in Sources */,
 				F771E83321C9F6FF00DE2C28 /* UIView+LLExtension.m in Sources */,
 				F722E24221C88CA300E79AA6 /* main.m in Sources */,
+				F771E86121CA2FB000DE2C28 /* MyAleartView.m in Sources */,
 				F771E84321C9FDDF00DE2C28 /* MyTabViewController.m in Sources */,
 				F771E84D21C9FDE400DE2C28 /* TestmMyButtonVCtrl.m in Sources */,
 				F771E82A21C9F6FF00DE2C28 /* HXNavBar.m in Sources */,
@@ -618,6 +629,7 @@
 				F771E83421C9F6FF00DE2C28 /* Constant.m in Sources */,
 				F771E82C21C9F6FF00DE2C28 /* UIImage+LLExtension.m in Sources */,
 				F771E83221C9F6FF00DE2C28 /* UIBarButtonItem+LLExtension.m in Sources */,
+				F771E85E21CA2F7900DE2C28 /* UIAleartViewController.m in Sources */,
 				F771E85421C9FDEB00DE2C28 /* HomeViewController.m in Sources */,
 				F771E84421C9FDDF00DE2C28 /* LLNavigationController.m in Sources */,
 			);
@@ -792,7 +804,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9WLD5M7QVM;
+				DEVELOPMENT_TEAM = 7FPUQV8RGB;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MyApp/Category/PrefixHeader.pch";
 				INFOPLIST_FILE = MyApp/Info.plist;
@@ -812,7 +824,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9WLD5M7QVM;
+				DEVELOPMENT_TEAM = 7FPUQV8RGB;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MyApp/Category/PrefixHeader.pch";
 				INFOPLIST_FILE = MyApp/Info.plist;

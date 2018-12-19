@@ -13,6 +13,10 @@
     [super viewDidLoad];
     self.navigationBar.hidden = YES;
     
+    UIButton *back = [[UIButton alloc]init];
+    back.frame = CGRectMake(10, 10, 30, 30);
+    [back setTitle:@"返回" forState:UIControlStateNormal];
+    [self.navigationController.navigationBar addSubview:back];
 }
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
 

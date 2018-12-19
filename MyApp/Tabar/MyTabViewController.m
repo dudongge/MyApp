@@ -58,7 +58,7 @@
     // 将自定义 View 添加到 tabBar 上
     [self.tabBar insertSubview:bgView atIndex:0];
     
-    LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:viewController];
+    //LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:viewController];
     viewController.navigationController.navigationBar.translucent = NO;
     self.tabBar.translucent = NO;
     viewController.navigationItem.title = title;
@@ -75,7 +75,7 @@
     [viewController.tabBarItem setTitleTextAttributes:selectedAttributeDic forState:UIControlStateSelected];
     
     
-    [self addChildViewController:nav];
+    [self addChildViewController:viewController];
     
     return viewController;
 }
