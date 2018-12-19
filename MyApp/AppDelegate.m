@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MyTabViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // 创建窗口
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    // 创建导航控制器的跟控制器,也属于导航控制器的子控制器
+    MyTabViewController *vc = [[MyTabViewController alloc] init];
+    // 导航控制器也需要一个根控制器
+    // 默认导航控制器把根控制器的view添加到导航控制器的view上
+    UINavigationController *navVc = [[UINavigationController alloc] initWithRootViewController:vc];
+    // 设置窗口的跟控制器
+    self.window.rootViewController = navVc;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
