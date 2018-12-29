@@ -10,6 +10,8 @@
 		09A34FB9164F0C8857E44032 /* libPods-MyAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B32EAD19024C79CA344F299C /* libPods-MyAppTests.a */; };
 		652838CCFC29E9DC2FBF0CB7 /* libPods-MyAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FD68B4FF2CE485367E6182 /* libPods-MyAppUITests.a */; };
 		E3BC81E0677D089F7F5F3202 /* libPods-MyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F707DAB6C506256077AEF723 /* libPods-MyApp.a */; };
+		F7079EB221D2101D0045C036 /* UIColor+MyExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F7079EB121D2101D0045C036 /* UIColor+MyExtension.m */; };
+		F715B75521D38DD8008F0BA6 /* DDGAnimationPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F715B75421D38DD8008F0BA6 /* DDGAnimationPageControl.m */; };
 		F722E23421C88CA000E79AA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F722E23321C88CA000E79AA6 /* AppDelegate.m */; };
 		F722E23A21C88CA000E79AA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F722E23821C88CA000E79AA6 /* Main.storyboard */; };
 		F722E23C21C88CA300E79AA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F722E23B21C88CA300E79AA6 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 		F722E24221C88CA300E79AA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F722E24121C88CA300E79AA6 /* main.m */; };
 		F722E24C21C88CA300E79AA6 /* MyAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F722E24B21C88CA300E79AA6 /* MyAppTests.m */; };
 		F722E25721C88CA300E79AA6 /* MyAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F722E25621C88CA300E79AA6 /* MyAppUITests.m */; };
+		F7313DCA21D084D2002B11D3 /* UIColorGradientVCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = F7313DC921D084D2002B11D3 /* UIColorGradientVCtrl.m */; };
+		F7313DE421D0968F002B11D3 /* MySectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7313DE321D0968F002B11D3 /* MySectionHeaderView.m */; };
 		F771E82A21C9F6FF00DE2C28 /* HXNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E81221C9F6FE00DE2C28 /* HXNavBar.m */; };
 		F771E82B21C9F6FF00DE2C28 /* HXMessageAlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E81421C9F6FE00DE2C28 /* HXMessageAlertTool.m */; };
 		F771E82C21C9F6FF00DE2C28 /* UIImage+LLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E81721C9F6FE00DE2C28 /* UIImage+LLExtension.m */; };
@@ -38,6 +42,14 @@
 		F771E85B21C9FDF100DE2C28 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E85721C9FDF100DE2C28 /* ViewController.m */; };
 		F771E85E21CA2F7900DE2C28 /* UIAleartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E85D21CA2F7900DE2C28 /* UIAleartViewController.m */; };
 		F771E86121CA2FB000DE2C28 /* MyAleartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E86021CA2FB000DE2C28 /* MyAleartView.m */; };
+		F78C9E2521D3334C00E4AC6D /* DDGBannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78C9E1921D3334C00E4AC6D /* DDGBannerScrollView.m */; };
+		F78C9E2621D3334C00E4AC6D /* UIView+DDGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F78C9E1A21D3334C00E4AC6D /* UIView+DDGExtension.m */; };
+		F78C9E2721D3334C00E4AC6D /* DDGCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F78C9E1B21D3334C00E4AC6D /* DDGCollectionViewCell.m */; };
+		F78C9E2821D3334C00E4AC6D /* DDGDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78C9E1E21D3334C00E4AC6D /* DDGDotView.m */; };
+		F78C9E2921D3334C00E4AC6D /* DDGPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F78C9E1F21D3334C00E4AC6D /* DDGPageControl.m */; };
+		F78C9E2A21D3334C00E4AC6D /* DDGAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78C9E2021D3334C00E4AC6D /* DDGAnimatedDotView.m */; };
+		F78C9E2B21D3334C00E4AC6D /* DDGAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78C9E2121D3334C00E4AC6D /* DDGAbstractDotView.m */; };
+		F78C9E2E21D35A5E00E4AC6D /* DDGHorizontalPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F78C9E2D21D35A5E00E4AC6D /* DDGHorizontalPageControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +78,11 @@
 		B32EAD19024C79CA344F299C /* libPods-MyAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD777752F154A25E957F26CF /* Pods-MyAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyAppUITests/Pods-MyAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E386FEBEDB136B6B43FE9175 /* Pods-MyAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyAppUITests/Pods-MyAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F7079EB021D2101D0045C036 /* UIColor+MyExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyExtension.h"; sourceTree = "<group>"; };
+		F7079EB121D2101D0045C036 /* UIColor+MyExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyExtension.m"; sourceTree = "<group>"; };
 		F707DAB6C506256077AEF723 /* libPods-MyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F715B75321D38DD8008F0BA6 /* DDGAnimationPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDGAnimationPageControl.h; sourceTree = "<group>"; };
+		F715B75421D38DD8008F0BA6 /* DDGAnimationPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDGAnimationPageControl.m; sourceTree = "<group>"; };
 		F722E22F21C88CA000E79AA6 /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F722E23221C88CA000E79AA6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F722E23321C88CA000E79AA6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -81,6 +97,10 @@
 		F722E25221C88CA300E79AA6 /* MyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F722E25621C88CA300E79AA6 /* MyAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAppUITests.m; sourceTree = "<group>"; };
 		F722E25821C88CA300E79AA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7313DC821D084D2002B11D3 /* UIColorGradientVCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIColorGradientVCtrl.h; sourceTree = "<group>"; };
+		F7313DC921D084D2002B11D3 /* UIColorGradientVCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIColorGradientVCtrl.m; sourceTree = "<group>"; };
+		F7313DE221D0968F002B11D3 /* MySectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySectionHeaderView.h; sourceTree = "<group>"; };
+		F7313DE321D0968F002B11D3 /* MySectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySectionHeaderView.m; sourceTree = "<group>"; };
 		F771E81221C9F6FE00DE2C28 /* HXNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXNavBar.m; sourceTree = "<group>"; };
 		F771E81321C9F6FE00DE2C28 /* XZMBProgressManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZMBProgressManager.h; sourceTree = "<group>"; };
 		F771E81421C9F6FE00DE2C28 /* HXMessageAlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXMessageAlertTool.m; sourceTree = "<group>"; };
@@ -123,6 +143,22 @@
 		F771E85D21CA2F7900DE2C28 /* UIAleartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIAleartViewController.m; sourceTree = "<group>"; };
 		F771E85F21CA2FB000DE2C28 /* MyAleartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAleartView.h; sourceTree = "<group>"; };
 		F771E86021CA2FB000DE2C28 /* MyAleartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAleartView.m; sourceTree = "<group>"; };
+		F78C9E1621D3334C00E4AC6D /* UIView+DDGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DDGExtension.h"; sourceTree = "<group>"; };
+		F78C9E1721D3334C00E4AC6D /* DDGBannerScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGBannerScrollView.h; sourceTree = "<group>"; };
+		F78C9E1821D3334C00E4AC6D /* DDGCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGCollectionViewCell.h; sourceTree = "<group>"; };
+		F78C9E1921D3334C00E4AC6D /* DDGBannerScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGBannerScrollView.m; sourceTree = "<group>"; };
+		F78C9E1A21D3334C00E4AC6D /* UIView+DDGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DDGExtension.m"; sourceTree = "<group>"; };
+		F78C9E1B21D3334C00E4AC6D /* DDGCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGCollectionViewCell.m; sourceTree = "<group>"; };
+		F78C9E1D21D3334C00E4AC6D /* DDGAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGAbstractDotView.h; sourceTree = "<group>"; };
+		F78C9E1E21D3334C00E4AC6D /* DDGDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGDotView.m; sourceTree = "<group>"; };
+		F78C9E1F21D3334C00E4AC6D /* DDGPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGPageControl.m; sourceTree = "<group>"; };
+		F78C9E2021D3334C00E4AC6D /* DDGAnimatedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGAnimatedDotView.m; sourceTree = "<group>"; };
+		F78C9E2121D3334C00E4AC6D /* DDGAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGAbstractDotView.m; sourceTree = "<group>"; };
+		F78C9E2221D3334C00E4AC6D /* DDGDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGDotView.h; sourceTree = "<group>"; };
+		F78C9E2321D3334C00E4AC6D /* DDGAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGAnimatedDotView.h; sourceTree = "<group>"; };
+		F78C9E2421D3334C00E4AC6D /* DDGPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGPageControl.h; sourceTree = "<group>"; };
+		F78C9E2C21D35A5E00E4AC6D /* DDGHorizontalPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDGHorizontalPageControl.h; sourceTree = "<group>"; };
+		F78C9E2D21D35A5E00E4AC6D /* DDGHorizontalPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDGHorizontalPageControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,10 +357,15 @@
 		F771E84621C9FDE400DE2C28 /* TestView */ = {
 			isa = PBXGroup;
 			children = (
+				F78C9E1521D3334C00E4AC6D /* DDGBannerScrollView */,
 				F771E84721C9FDE400DE2C28 /* MyButton.h */,
 				F771E84821C9FDE400DE2C28 /* MyButton.m */,
 				F771E85F21CA2FB000DE2C28 /* MyAleartView.h */,
 				F771E86021CA2FB000DE2C28 /* MyAleartView.m */,
+				F7313DE221D0968F002B11D3 /* MySectionHeaderView.h */,
+				F7313DE321D0968F002B11D3 /* MySectionHeaderView.m */,
+				F7079EB021D2101D0045C036 /* UIColor+MyExtension.h */,
+				F7079EB121D2101D0045C036 /* UIColor+MyExtension.m */,
 			);
 			path = TestView;
 			sourceTree = "<group>";
@@ -336,6 +377,8 @@
 				F771E84A21C9FDE400DE2C28 /* TestmMyButtonVCtrl.m */,
 				F771E85C21CA2F7900DE2C28 /* UIAleartViewController.h */,
 				F771E85D21CA2F7900DE2C28 /* UIAleartViewController.m */,
+				F7313DC821D084D2002B11D3 /* UIColorGradientVCtrl.h */,
+				F7313DC921D084D2002B11D3 /* UIColorGradientVCtrl.m */,
 			);
 			path = TestVC;
 			sourceTree = "<group>";
@@ -353,8 +396,8 @@
 		F771E84F21C9FDEB00DE2C28 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				F771E85021C9FDEB00DE2C28 /* HomeViewController.m */,
 				F771E85121C9FDEB00DE2C28 /* HomeViewController.h */,
+				F771E85021C9FDEB00DE2C28 /* HomeViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -382,6 +425,39 @@
 				F771E85921C9FDF100DE2C28 /* ViewController.h */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		F78C9E1521D3334C00E4AC6D /* DDGBannerScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				F78C9E1621D3334C00E4AC6D /* UIView+DDGExtension.h */,
+				F78C9E1721D3334C00E4AC6D /* DDGBannerScrollView.h */,
+				F78C9E1821D3334C00E4AC6D /* DDGCollectionViewCell.h */,
+				F78C9E1921D3334C00E4AC6D /* DDGBannerScrollView.m */,
+				F78C9E1A21D3334C00E4AC6D /* UIView+DDGExtension.m */,
+				F78C9E1B21D3334C00E4AC6D /* DDGCollectionViewCell.m */,
+				F78C9E1C21D3334C00E4AC6D /* DDGPageControl */,
+			);
+			path = DDGBannerScrollView;
+			sourceTree = "<group>";
+		};
+		F78C9E1C21D3334C00E4AC6D /* DDGPageControl */ = {
+			isa = PBXGroup;
+			children = (
+				F78C9E2C21D35A5E00E4AC6D /* DDGHorizontalPageControl.h */,
+				F78C9E2D21D35A5E00E4AC6D /* DDGHorizontalPageControl.m */,
+				F715B75321D38DD8008F0BA6 /* DDGAnimationPageControl.h */,
+				F715B75421D38DD8008F0BA6 /* DDGAnimationPageControl.m */,
+				F78C9E1D21D3334C00E4AC6D /* DDGAbstractDotView.h */,
+				F78C9E2121D3334C00E4AC6D /* DDGAbstractDotView.m */,
+				F78C9E2221D3334C00E4AC6D /* DDGDotView.h */,
+				F78C9E1E21D3334C00E4AC6D /* DDGDotView.m */,
+				F78C9E2421D3334C00E4AC6D /* DDGPageControl.h */,
+				F78C9E1F21D3334C00E4AC6D /* DDGPageControl.m */,
+				F78C9E2021D3334C00E4AC6D /* DDGAnimatedDotView.m */,
+				F78C9E2321D3334C00E4AC6D /* DDGAnimatedDotView.h */,
+			);
+			path = DDGPageControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -616,21 +692,33 @@
 				F771E83D21C9FDD700DE2C28 /* MineViewController.m in Sources */,
 				F771E82B21C9F6FF00DE2C28 /* HXMessageAlertTool.m in Sources */,
 				F771E82F21C9F6FF00DE2C28 /* RefreshTool.m in Sources */,
+				F78C9E2621D3334C00E4AC6D /* UIView+DDGExtension.m in Sources */,
+				F78C9E2A21D3334C00E4AC6D /* DDGAnimatedDotView.m in Sources */,
 				F771E83021C9F6FF00DE2C28 /* Foundation+Log.m in Sources */,
 				F771E83321C9F6FF00DE2C28 /* UIView+LLExtension.m in Sources */,
+				F715B75521D38DD8008F0BA6 /* DDGAnimationPageControl.m in Sources */,
 				F722E24221C88CA300E79AA6 /* main.m in Sources */,
+				F7313DE421D0968F002B11D3 /* MySectionHeaderView.m in Sources */,
 				F771E86121CA2FB000DE2C28 /* MyAleartView.m in Sources */,
 				F771E84321C9FDDF00DE2C28 /* MyTabViewController.m in Sources */,
+				F78C9E2921D3334C00E4AC6D /* DDGPageControl.m in Sources */,
+				F78C9E2521D3334C00E4AC6D /* DDGBannerScrollView.m in Sources */,
 				F771E84D21C9FDE400DE2C28 /* TestmMyButtonVCtrl.m in Sources */,
 				F771E82A21C9F6FF00DE2C28 /* HXNavBar.m in Sources */,
 				F722E23421C88CA000E79AA6 /* AppDelegate.m in Sources */,
+				F7313DCA21D084D2002B11D3 /* UIColorGradientVCtrl.m in Sources */,
+				F78C9E2821D3334C00E4AC6D /* DDGDotView.m in Sources */,
+				F7079EB221D2101D0045C036 /* UIColor+MyExtension.m in Sources */,
 				F771E83521C9F6FF00DE2C28 /* LLBaseShowView.m in Sources */,
 				F771E83121C9F6FF00DE2C28 /* XZMBProgressManager.m in Sources */,
+				F78C9E2B21D3334C00E4AC6D /* DDGAbstractDotView.m in Sources */,
 				F771E83421C9F6FF00DE2C28 /* Constant.m in Sources */,
 				F771E82C21C9F6FF00DE2C28 /* UIImage+LLExtension.m in Sources */,
 				F771E83221C9F6FF00DE2C28 /* UIBarButtonItem+LLExtension.m in Sources */,
+				F78C9E2721D3334C00E4AC6D /* DDGCollectionViewCell.m in Sources */,
 				F771E85E21CA2F7900DE2C28 /* UIAleartViewController.m in Sources */,
 				F771E85421C9FDEB00DE2C28 /* HomeViewController.m in Sources */,
+				F78C9E2E21D35A5E00E4AC6D /* DDGHorizontalPageControl.m in Sources */,
 				F771E84421C9FDDF00DE2C28 /* LLNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

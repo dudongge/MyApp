@@ -119,6 +119,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)setBackGroundColor:(UIColor *)color  withState:(UIControlState)myState;
 
+/**
+ 设置标题富文本
+
+ @param attributedText 要显示的r富文本
+ @param myState 富文本要先的状态
+ */
 - (void)setTltleAttributes:(NSAttributedString *)attributedText withState:(UIControlState)myState;
 
 @end

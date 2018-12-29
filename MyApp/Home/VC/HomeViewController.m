@@ -8,6 +8,8 @@
 
 #import "HomeViewController.h"
 #import "TestmMyButtonVCtrl.h"
+#import "UIAleartViewController.h"
+#import "UIColorGradientVCtrl.h"
 
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -36,6 +38,12 @@
     if (indexPath.row == 0) {
         TestmMyButtonVCtrl *testVC = [[TestmMyButtonVCtrl alloc]init];
         [self.navigationController pushViewController:testVC animated:YES];
+    } else if (indexPath.row == 1) {
+        UIAleartViewController *alVC = [[UIAleartViewController alloc]init];
+        [self.navigationController pushViewController:alVC animated:YES];
+    } else if (indexPath.row == 2) {
+        UIColorGradientVCtrl *cgVC = [[UIColorGradientVCtrl alloc]init];
+        [self.navigationController pushViewController:cgVC animated:YES];
     }
 }
 
@@ -53,7 +61,7 @@
 
 - (NSArray *)dataSource {
     if (!_dataSource) {
-        _dataSource = @[@"自定义按钮",@"我的漫画大卡",@"追漫详情",@"自定义弹框"];
+        _dataSource = @[@"自定义按钮",@"qq通讯录",@"颜色渐变的banner",@"自定义弹框"];
     }
     return _dataSource;
 }

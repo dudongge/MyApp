@@ -106,7 +106,7 @@
 
 -(void)dealloc {
     [self removeObserver];
-    NSLog(@"dealloc -- MyButton");
+    //NSLog(@"dealloc -- MyButton");
 }
 
 - (void)_initSubViews {
