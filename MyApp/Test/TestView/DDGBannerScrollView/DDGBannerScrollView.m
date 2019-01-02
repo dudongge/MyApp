@@ -6,28 +6,6 @@
 //  Copyright © 2018 dudongge. All rights reserved.
 //
 
-/*
- 
- *********************************************************************************
- *
- * 🌟🌟🌟 新建DDGBannerScrollView交流QQ群：185534916 🌟🌟🌟
- *
- * 在您使用此自动轮播库的过程中如果出现bug请及时以以下任意一种方式联系我们，我们会及时修复bug并
- * 帮您解决问题。
- * 新浪微博:GDDG_iOS
- * Email : gDDGios@126.com
- * GitHub: https://github.com/gDDGios
- *
- * 另（我的自动布局库DDGAutoLayout）：
- *  一行代码搞定自动布局！支持Cell和Tableview高度自适应，Label和ScrollView内容自适应，致力于
- *  做最简单易用的AutoLayout库。
- * 视频教程：http://www.letv.com/ptv/vplay/24038772.html
- * 用法示例：https://github.com/gDDGios/DDGAutoLayout/blob/master/README.md
- * GitHub：https://github.com/gDDGios/DDGAutoLayout
- *********************************************************************************
- 
- */
-
 
 #import "DDGBannerScrollView.h"
 #import "DDGCollectionViewCell.h"
@@ -35,6 +13,8 @@
 #import "DDGPageControl.h"
 #import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
+#import "DDGHorizontalPageControl.h"
+#import "DDGAnimationPageControl.h"
 
 #define kCycleScrollViewInitialPageControlDotSize CGSizeMake(10, 10)
 
@@ -48,7 +28,7 @@ NSString * const ID = @"DDGBannerScrollViewCell";
 @property (nonatomic, strong) NSArray *imagePathsGroup;
 @property (nonatomic, weak) NSTimer *timer;
 @property (nonatomic, assign) NSInteger totalItemsCount;
-@property (nonatomic, weak) UIControl *pageControl;
+@property (nonatomic, weak) UIView *pageControl;
 
 @property (nonatomic, strong) UIImageView *backgroundImageView; // 当imageURLs为空时的背景图
 
@@ -97,9 +77,10 @@ NSString * const ID = @"DDGBannerScrollViewCell";
     
 }
 
-+ (instancetype)cycleScrollViewWithFrame:(CGRect)frame imageNamesGroup:(NSArray *)imageNamesGroup
++ (instancetype)cycleScrollViewWithFrame:(CGRect)frame imageNamesGroup:(NSArray *)imageNamesGroup pageControlStyle:(DDGBannerScrollViewPageContolStyle)pageControlStyle
 {
     DDGBannerScrollView *cycleScrollView = [[self alloc] initWithFrame:frame];
+    
     cycleScrollView.localizationImageNamesGroup = [NSMutableArray arrayWithArray:imageNamesGroup];
     return cycleScrollView;
 }
@@ -414,6 +395,65 @@ NSString * const ID = @"DDGBannerScrollViewCell";
             _pageControl = pageControl;
         }
             break;
+        case DDGBannerScrollViewPageControlHorizontal:
+        {
+            if (self.pageControl) {
+                [self.pageControl removeFromSuperview];
+            }
+            DDGHorizontalPageControl *pageControl = [[DDGHorizontalPageControl alloc] init];
+            pageControl.pages = self.imagePathsGroup.count;
+            pageControl.currentPageColor = self.currentPageDotColor;
+            pageControl.normalPageColor = self.pageDotColor;
+            pageControl.userInteractionEnabled = NO;
+            pageControl.startPage = indexOnPageControl;
+            [self addSubview:pageControl];
+            _pageControl = pageControl;
+        }
+            break;
+        case DDGBannerScrollViewPageImageRotation:
+        {
+            DDGAnimationPageControl *pageControl = [[DDGAnimationPageControl alloc] init];
+            pageControl.pages = self.imagePathsGroup.count;
+            pageControl.normalPageImage = self.pageDotImage;
+            pageControl.animationType = DDGAnimationPageControlRotation;
+            pageControl.currentPageImage = self.currentPageDotImage;
+            pageControl.userInteractionEnabled = NO;
+            pageControl.startPage = indexOnPageControl;
+            [self addSubview:pageControl];
+            _pageControl = pageControl;
+        }
+            break;
+        case DDGBannerScrollViewPageImageJump:
+        {
+            DDGAnimationPageControl *pageControl = [[DDGAnimationPageControl alloc] init];
+            pageControl.pages = self.imagePathsGroup.count;
+            pageControl.normalPageImage = self.pageDotImage;
+            pageControl.animationType = DDGAnimationPageControlJump;
+            pageControl.currentPageImage = self.currentPageDotImage;
+            pageControl.userInteractionEnabled = NO;
+            pageControl.startPage = indexOnPageControl;
+            [self addSubview:pageControl];
+            _pageControl = (UIPageControl *)pageControl;
+        }
+            break;
+        case DDGBannerScrollViewPageImageAnimated:
+        {
+            DDGAnimationPageControl *pageControl = [[DDGAnimationPageControl alloc] init];
+            pageControl.pages = self.imagePathsGroup.count;
+            pageControl.normalPageImage = self.pageDotImage;
+            pageControl.animationType = DDGAnimationPageControlNoamal;
+            pageControl.currentPageImage = self.currentPageDotImage;
+            pageControl.userInteractionEnabled = NO;
+            pageControl.startPage = indexOnPageControl;
+            [self addSubview:pageControl];
+            _pageControl = (UIPageControl *)pageControl;
+        }
+            break;
+        case DDGBannerScrollViewPageContolStyleNone:
+        {
+           
+        }
+            break;
             
         default:
             break;
@@ -508,7 +548,7 @@ NSString * const ID = @"DDGBannerScrollViewCell";
             pageControl.dotSize = self.pageControlDotSize;
         }
         size = [pageControl sizeForNumberOfPages:self.imagePathsGroup.count];
-    } else {
+    } else  {
         size = CGSizeMake(self.imagePathsGroup.count * self.pageControlDotSize.width * 1.5, self.pageControlDotSize.height);
     }
     CGFloat x = (self.ddg_width - size.width) * 0.5;

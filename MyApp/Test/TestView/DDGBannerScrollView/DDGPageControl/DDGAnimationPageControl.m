@@ -9,8 +9,18 @@
 #import "DDGAnimationPageControl.h"
 
 @interface DDGAnimationPageControl()
+
+/**
+ pageDots 动画需要播放的图片组
+ */
+
 @property (nonatomic, strong) NSMutableArray<UIImageView *> *pageDots;
+
+/**
+ animationImageView 动画要用到的图片
+ */
 @property (nonatomic, strong) UIImageView *animationImageView;
+
 @end
 
 @implementation DDGAnimationPageControl

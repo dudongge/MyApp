@@ -39,7 +39,7 @@
     [self.view addSubview: self.myAnimationRotationControl];
     
     self.cycleScrollView.pageControlAliment = DDGBannerScrollViewPageContolAlimentRight;
-    self.cycleScrollView.pageControlStyle = DDGBannerScrollViewPageContolStyleAnimated;
+    self.cycleScrollView.pageControlStyle = DDGBannerScrollViewPageControlHorizontal;
     //self.cycleScrollView.currentPageDotColor = [UIColor whiteColor];
     //self.cycleScrollView.pageDotColor = [UIColor whiteColor];
     self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"cache_delete"];
@@ -113,6 +113,7 @@
     if (!_cycleScrollView) {
         CGRect frame = CGRectMake(30, 88, screen_width - 60, screen_width * 0.37);
         _cycleScrollView = [DDGBannerScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:[UIImage imageNamed:@"cache_cancel_all"]];
+        
         _cycleScrollView.imageURLStringsGroup = @[@"0",@"1",@"2",@"1",@"2"];
     }
     return _cycleScrollView;
