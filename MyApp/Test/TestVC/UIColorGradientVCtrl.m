@@ -8,156 +8,244 @@
 
 #import "UIColorGradientVCtrl.h"
 #import "DDGBannerScrollView.h"
+#import "UIColor+MyExtension.h"
+#import "DDGHorizontalPageControl.h"
+#import "DDGAnimationPageControl.h"
 
 @interface UIColorGradientVCtrl ()<DDGBannerScrollViewDelegate>
-@property (nonatomic, strong) UIProgressView *progressView;
-@property (nonatomic, strong) UISlider *slider;
-@property (nonatomic, strong) UIView *bgView;
-@property (nonatomic, strong) UIView *headerView;
-@property (nonatomic, strong) UIView *fromView;
-@property (nonatomic, strong) UIView *toView;
+
 @property (nonatomic, strong) DDGBannerScrollView *cycleScrollView;
+@property (nonatomic, strong) UIView *bgHeaderView;
+@property (nonatomic, strong) NSMutableArray *changeColors;
+@property (nonatomic, strong) UIImageView *rotationImageView;
+@property (nonatomic, strong) DDGHorizontalPageControl *horizontalPageControl;
+@property (nonatomic, strong) DDGAnimationPageControl  *animationPageControl;
+@property (nonatomic, strong) DDGAnimationPageControl  *myAnimationJumpControl;
+@property (nonatomic, strong) DDGAnimationPageControl  *myAnimationRotationControl;
 @end
 
 @implementation UIColorGradientVCtrl
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view addSubview:self.cycleScrollView];
-    self.cycleScrollView.pageControlAliment = DDGBannerScrollViewPageContolAlimentRight;
-    self.cycleScrollView.currentPageDotColor = [UIColor blackColor];
-    self.cycleScrollView.pageDotColor = [UIColor redColor];
-    __weak typeof(self) weakSelf = self;
+    [self.view addSubview:self.bgHeaderView];
+    [self.bgHeaderView addSubview:self.cycleScrollView];
+    //[self.view addSubview:self.rotationImageView];
+    [self.view addSubview: self.horizontalPageControl];
+    
+    [self.view addSubview: self.DDGAnimationPageControl];
+    [self.view addSubview: self.myAnimationJumpControl];
+    [self.view addSubview: self.myAnimationRotationControl];
+    
+    self.cycleScrollView.pageControlAliment   = DDGBannerScrollViewPageContolAlimentRight;
+    self.cycleScrollView.pageControlStyle     = DDGBannerScrollViewPageImageRotation;
+    self.cycleScrollView.currentPageDotColor  = [UIColor whiteColor];
+    self.cycleScrollView.pageDotColor         = [UIColor whiteColor];
+    self.cycleScrollView.pageDotImage         = [UIImage imageNamed:@"page_normal"];
+    self.cycleScrollView.currentPageDotImage  = [UIImage imageNamed:@"page_current"];
+    self.cycleScrollView.pageDotColor         = UIColor.blackColor;
+    self.cycleScrollView.currentPageDotColor  = UIColor.redColor;
+    __weak typeof(self) weakSelf = self;;
     self.cycleScrollView.cycleScrollViewBlock = ^(NSInteger offset) {
-        //[self handelBannerBgColorWithOffset:offset];
+        [weakSelf handelBannerBgColorWithOffset:offset];
     };
-   
-//    self.slider.frame = CGRectMake(100, 200, 100, 30);
-//    [self.slider addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
-//    self.progressView.frame = CGRectMake(100, 300, 100, 30);
-//    self.progressView.backgroundColor = [UIColor blueColor];
-//
-//    self.bgView.frame = CGRectMake(100, 330, 100, 100);
-//    self.bgView.backgroundColor = [UIColor colorWithRed:203 /255.0 green:193 /255.0 blue:255 / 255.0 alpha:1.0];
-//
-//    self.fromView.frame = CGRectMake(30, 450, 100, 100);
-//    self.fromView.backgroundColor = [UIColor colorWithRed:21/255.0 green:43/255.0 blue:55/255.0 alpha:1.0];
-//
-//    self.toView.frame = CGRectMake(150, 450, 100, 100);
-//    self.toView.backgroundColor = [UIColor colorWithRed:71/255.0 green:63/255.0 blue:15/255.0 alpha:1.0];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!self) return;
+        
+    });
+    
+    //[self rotationImageView:self.rotationImageView];
+    [UIView animateWithDuration:2.0 animations:^{
+        self.rotationImageView.frame = CGRectMake(150, 300, 50, 50);
+    } completion:^(BOOL finished) {
+        
+    }];
+    [self rotationImageView:self.rotationImageView];
+    [self startrRotationImageView:self.rotationImageView duration:2.0 controlPoint:CGPointMake(0, 0)];
     
     
-    self.fromView.frame = CGRectMake(30, 450, 50, 50);
-    self.fromView.backgroundColor = [UIColor colorWithRed:21/255.0 green:43/255.0 blue:55/255.0 alpha:1.0];
-
 }
 
-#pragma  -mark- DDGCycleScrollView delegate
-
-- (void)sliderValueChange:(UISlider *)slider {
-    NSLog(@"%f",slider.value);
-    ///203,193,255
-    //227,168,142
-    //self.bgView.backgroundColor = [self getColorByPercent:slider.value];
-    UIColor *startColor = [UIColor colorWithRed:203 /255.0 green:193 /255.0 blue:255 / 255.0 alpha:1.0];
-    UIColor *endColor = [UIColor colorWithRed:227 /255.0 green:168 /255.0 blue:142 / 255.0 alpha:1.0];
-    self.bgView.backgroundColor = [self getColorWithColor:startColor andCoe:slider.value andMarginArray:[self transColorBeginColor:startColor andEndColor:endColor]];
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
-//得到一个颜色的原始值
-- (NSArray *)getRGBDictionaryByColor:(UIColor *)originColor {
-    CGFloat r = 0,g = 0,b = 0,a = 0;
-    if ([self respondsToSelector:@selector(getRed:green:blue:alpha:)]) {
-        [originColor getRed:&r green:&g blue:&b alpha:&a];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //[self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //[self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
+- (void)cycleScrollView:(DDGBannerScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
+    [self.horizontalPageControl setCurrentPage:index];
+    [self.animationPageControl setCurrentPage:index];
+    [self.myAnimationJumpControl setCurrentPage:index];
+    [self.myAnimationRotationControl setCurrentPage:index];
+    [self rotationImageView:self.rotationImageView];
+}
+
+//根据偏移量计算设置banner背景颜色
+- (void)handelBannerBgColorWithOffset:(NSInteger )offset {
+    if (1 == self.changeColors.count) return;
+    NSInteger offsetCurrent = offset % (int)self.cycleScrollView.bounds.size.width ;
+    float rate = offsetCurrent / self.cycleScrollView.bounds.size.width ;
+    NSInteger currentPage = offset / (int)self.cycleScrollView.bounds.size.width;
+    UIColor *startPageColor;
+    UIColor *endPageColor;
+    if (currentPage == self.changeColors.count - 1) {
+        startPageColor = self.changeColors[currentPage];
+        endPageColor = self.changeColors[0];
+    } else {
+        if (currentPage  == self.changeColors.count) {
+            return;
+        }
+        startPageColor = self.changeColors[currentPage];
+        endPageColor = self.changeColors[currentPage + 1];
     }
-    else {
-        const CGFloat *components = CGColorGetComponents(originColor.CGColor);
-        r = components[0];
-        g = components[1];
-        b = components[2];
-        a = components[3];
-    }
-    return @[@(r),@(g),@(b)];
-}
-
-//计算两个值的色差
-- (NSArray *)transColorBeginColor:(UIColor *)beginColor andEndColor:(UIColor *)endColor {
-    NSArray<NSNumber *> *beginColorArr = [self getRGBDictionaryByColor:beginColor];
-    NSArray<NSNumber *> *endColorArr = [self getRGBDictionaryByColor:endColor];
-    return @[@([endColorArr[0] doubleValue] - [beginColorArr[0] doubleValue]),@([endColorArr[1] doubleValue] - [beginColorArr[1] doubleValue]),@([endColorArr[2] doubleValue] - [beginColorArr[2] doubleValue])];
-}
-
-//返回当前的颜色
-- (UIColor *)getColorWithColor:(UIColor *)beginColor andCoe:(double)coe andMarginArray:(NSArray<NSNumber *> *)marginArray {
-    NSArray *beginColorArr = [self getRGBDictionaryByColor:beginColor];
-    double red = [beginColorArr[0] doubleValue] + coe * [marginArray[0] doubleValue];
-    double green = [beginColorArr[1] doubleValue]+ coe * [marginArray[1] doubleValue];
-    double blue = [beginColorArr[2] doubleValue] + coe * [marginArray[2] doubleValue];
-    return [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    UIColor *currentToLastColor = [UIColor getColorWithColor:startPageColor andCoe:rate andEndColor:endPageColor];
+    self.bgHeaderView.backgroundColor = currentToLastColor;
 }
 
 - (DDGBannerScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
-        CGRect frame = CGRectMake(0, 88, screen_width, screen_width * 0.67);
+        CGRect frame = CGRectMake(30, 88, screen_width - 60, screen_width * 0.37);
         _cycleScrollView = [DDGBannerScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:[UIImage imageNamed:@"cache_cancel_all"]];
-        _cycleScrollView.imageURLStringsGroup = @[@"0",@"1",@"2"];
+        
+        _cycleScrollView.imageURLStringsGroup = @[@"1",@"2",@"3",@"4"];
     }
     return _cycleScrollView;
 }
 
-
-
-- (UIProgressView *)progressView {
-    if (!_progressView) {
-        _progressView = [[UIProgressView alloc]init];
-        _progressView.backgroundColor = UIColor.blueColor;
-        [self.view addSubview:_progressView];
+- (UIView *)bgHeaderView {
+    if (!_bgHeaderView) {
+        _bgHeaderView = [[UIView alloc]init];
+        _bgHeaderView.frame = CGRectMake(0,0, screen_width , screen_width * 0.37 + 120);
     }
-    return _progressView;
-}
-- (UISlider *)slider {
-    if (!_slider) {
-        _slider = [[UISlider alloc]init];
-        [self.view addSubview:_slider];
-    }
-    return _slider;
+    return _bgHeaderView;
 }
 
-- (UIView *)bgView {
-    if (!_bgView) {
-        _bgView = [[UIView alloc]init];
-        _bgView.backgroundColor = UIColor.blueColor;
-        [self.view addSubview:_bgView];
+- (NSMutableArray *)changeColors {
+    if (!_changeColors) {
+        UIColor *oneColor   = [UIColor colorWithHexString:@"#FDC0BC" alpha:1.0];
+        UIColor *twoColor   = [UIColor colorWithHexString:@"#CBC1FF" alpha:1.0];
+        UIColor *threeColor = [UIColor colorWithHexString:@"#C8CFA2" alpha:1.0];
+        UIColor *fourColor  = [UIColor colorWithHexString:@"#CBC1FF" alpha:1.0];
+        UIColor *fiveColor  = [UIColor colorWithHexString:@"#C8CFA2" alpha:1.0];
+        _changeColors = [[NSMutableArray alloc]initWithArray:@[oneColor,twoColor,threeColor,fourColor,fiveColor]];
     }
-    return _bgView;
+    return _changeColors;
 }
 
-- (UIView *)fromView {
-    if (!_fromView) {
-        _fromView = [[UIView alloc]init];
-        _fromView.backgroundColor = UIColor.blueColor;
-        [self.view addSubview:_fromView];
+- (UIImageView *)rotationImageView {
+    if (!_rotationImageView) {
+        _rotationImageView = [[UIImageView alloc]init];
+        _rotationImageView.image = [UIImage imageNamed:@"0"];
+        _rotationImageView.frame = CGRectMake(50, 300, 50, 50);
     }
-    return _fromView;
+    return _rotationImageView;
 }
 
-- (UIView *)toView {
-    if (!_toView) {
-        _toView = [[UIView alloc]init];
-        _toView.backgroundColor = UIColor.blueColor;
-        [self.view addSubview:_toView];
+- (DDGHorizontalPageControl *)horizontalPageControl {
+    if (!_horizontalPageControl) {
+        _horizontalPageControl = [[DDGHorizontalPageControl alloc]init];
+        _horizontalPageControl.frame = CGRectMake(10, 300, 360, 50);
+        _horizontalPageControl.dotBigSize   = CGSizeMake(18, 6);
+        _horizontalPageControl.dotNomalSize = CGSizeMake(6, 6);
+        _horizontalPageControl.dotMargin = 6;
+        _horizontalPageControl.backgroundColor = UIColor.lightGrayColor;
+        _horizontalPageControl.currentPageColor = [UIColor whiteColor];
+        _horizontalPageControl.normalPageColor = [UIColor grayColor];
+        _horizontalPageControl.pages = 5;
     }
-    return _toView;
+    return _horizontalPageControl;
 }
 
-- (void)startWithPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint {
-    CGFloat centerX = (endPoint.x - startPoint.x) / 2.0;
-    CGFloat centerY = (endPoint.y - startPoint.y) / 2.0;
-    
-    CGPoint centerP = CGPointMake(0, 0);
-    
-    
+- (DDGAnimationPageControl *)DDGAnimationPageControl {
+    if (!_animationPageControl) {
+        _animationPageControl = [[DDGAnimationPageControl alloc]init];
+        _animationPageControl = [DDGAnimationPageControl initWithinitWithFrame:CGRectMake(10, 400, 360, 50)
+                                                                       dotBigSize:CGSizeMake(30, 30)
+                                                                     dotNomalSize:CGSizeMake(20, 20)
+                                                                        dotMargin:20
+                                                                        pageCount:5
+                                                                        startPage:1
+                                                                 currentPageImage:[UIImage imageNamed:@"page_current"]
+                                                                  normalPageImage:[UIImage imageNamed:@"page_normal"]];
+        
+        _animationPageControl.backgroundColor = UIColor.lightGrayColor;
+    }
+    return _animationPageControl;
+}
+
+- (DDGAnimationPageControl *)myAnimationRotationControl {
+    if (!_myAnimationRotationControl) {
+        _myAnimationRotationControl = [[DDGAnimationPageControl alloc]init];
+        _myAnimationRotationControl = [DDGAnimationPageControl initWithinitWithFrame:CGRectMake(10, 500, 360, 50)
+                                                                          dotBigSize:CGSizeMake(30, 30)
+                                                                        dotNomalSize:CGSizeMake(20, 20)
+                                                                           dotMargin:20
+                                                                           pageCount:5
+                                                                           startPage:1
+                                                                    currentPageImage:[UIImage imageNamed:@"page_current"]
+                                                                     normalPageImage:[UIImage imageNamed:@"page_normal"]];
+        
+        _myAnimationRotationControl.backgroundColor = UIColor.lightGrayColor;
+        _myAnimationRotationControl.animationType = DDGAnimationPageControlRotation;
+    }
+    return _myAnimationRotationControl;
+}
+
+- (DDGAnimationPageControl *)myAnimationJumpControl {
+    if (!_myAnimationJumpControl) {
+        _myAnimationJumpControl = [[DDGAnimationPageControl alloc]init];
+        _myAnimationJumpControl = [DDGAnimationPageControl initWithinitWithFrame:CGRectMake(10, 600, 360, 50)
+                                                                      dotBigSize:CGSizeMake(30, 30)
+                                                                    dotNomalSize:CGSizeMake(20, 20)
+                                                                       dotMargin:20
+                                                                       pageCount:5
+                                                                       startPage:1
+                                                                currentPageImage:[UIImage imageNamed:@"page_current"]
+                                                                 normalPageImage:[UIImage imageNamed:@"page_normal"]];
+        
+        _myAnimationJumpControl.backgroundColor = UIColor.lightGrayColor;
+        _myAnimationJumpControl.animationType = DDGAnimationPageControlJump;
+    }
+    return _myAnimationJumpControl;
+}
+
+- (void)rotationImageView:(UIImageView *)imageView {
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
+    rotationAnimation.duration = 2.0;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 1;
+    [imageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+}
+
+
+- (void)startrRotationImageView:(UIImageView *)imageView duration:(CGFloat)duration controlPoint:(CGPoint)controlPoint2 {
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+    //设置动画属性，因为是沿着贝塞尔曲线动，所以要设置为position
+    animation.keyPath = @"position";
+    //设置动画时间
+    animation.duration = duration;
+    // 告诉在动画结束的时候不要移除
+    animation.removedOnCompletion = NO;
+    // 始终保持最新的效果
+    animation.fillMode = kCAFillModeForwards;
+    CGPoint bezierPoint = CGPointMake(imageView.frame.origin.x, imageView.frame.origin.y);
+    //贝塞尔曲线
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithArcCenter:bezierPoint radius:60 startAngle:M_PI endAngle:M_PI_2 clockwise:true];
+    // 设置贝塞尔曲线路径
+    animation.path = circlePath.CGPath;
+    // 将动画对象添加到视图的layer上
+    [imageView.layer addAnimation:animation forKey:@"position"];
 }
 
 @end

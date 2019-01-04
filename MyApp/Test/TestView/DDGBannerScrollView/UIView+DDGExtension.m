@@ -11,54 +11,44 @@
 
 @implementation UIView (DDGExtension)
 
-- (CGFloat)ddg_height
-{
+- (CGFloat)ddg_height {
     return self.frame.size.height;
 }
 
-- (void)setDdg_height:(CGFloat)ddg_height
-{
+- (void)setDdg_height:(CGFloat)ddg_height {
     CGRect temp = self.frame;
     temp.size.height = ddg_height;
     self.frame = temp;
 }
 
-- (CGFloat)ddg_width
-{
+- (CGFloat)ddg_width {
     return self.frame.size.width;
 }
 
-- (void)setDdg_width:(CGFloat)ddg_width
-{
+- (void)setDdg_width:(CGFloat)ddg_width {
     CGRect temp = self.frame;
     temp.size.width = ddg_width;
     self.frame = temp;
 }
 
-
-- (CGFloat)ddg_y
-{
+- (CGFloat)ddg_y {
     return self.frame.origin.y;
 }
 
-- (void)setDdg_y:(CGFloat)ddg_y
-{
+- (void)setDdg_y:(CGFloat)ddg_y {
     CGRect temp = self.frame;
     temp.origin.y = ddg_y;
     self.frame = temp;
 }
 
-- (CGFloat)ddg_x
-{
+- (CGFloat)ddg_x {
     return self.frame.origin.x;
 }
 
-- (void)setDDG_x:(CGFloat)ddg_x
-{
+- (void)setDdg_x:(CGFloat)ddg_x {
     CGRect temp = self.frame;
     temp.origin.x = ddg_x;
     self.frame = temp;
 }
-
 
 @end

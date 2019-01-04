@@ -44,7 +44,9 @@
     //self.cycleScrollView.pageDotColor = [UIColor whiteColor];
     self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"cache_delete"];
     self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"cache_pause"];
-    __weak typeof(self) weakSelf = self;
+    self.cycleScrollView.pageDotColor = UIColor.greenColor;
+    self.cycleScrollView.currentPageDotColor = UIColor.redColor;
+    __weak typeof(self) weakSelf = self;;
     self.cycleScrollView.cycleScrollViewBlock = ^(NSInteger offset) {
         [weakSelf handelBannerBgColorWithOffset:offset];
     };
@@ -80,9 +82,9 @@
 
 - (void)cycleScrollView:(DDGBannerScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
     [self.DDGHorizontalPageControl updateCurrentPage:index offset:0];
-    [self.DDGAnimationPageControl updateCurrentPage:index];
-    [self.myAnimationJumpControl updateCurrentPage:index];
-    [self.myAnimationRotationControl updateCurrentPage:index];
+    [self.DDGAnimationPageControl setCurrentPage:index];
+    [self.myAnimationJumpControl setCurrentPage:index];
+    [self.myAnimationRotationControl setCurrentPage:index];
     //[self rotationImageView:self.rotationImageView];
     //[self startrRotationImageView:self.rotationImageView duration:2.0 controlPoint:CGPointMake(0, 0)];
 }

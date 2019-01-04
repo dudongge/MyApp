@@ -21,6 +21,11 @@
 		F722E25721C88CA300E79AA6 /* MyAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F722E25621C88CA300E79AA6 /* MyAppUITests.m */; };
 		F7313DCA21D084D2002B11D3 /* UIColorGradientVCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = F7313DC921D084D2002B11D3 /* UIColorGradientVCtrl.m */; };
 		F7313DE421D0968F002B11D3 /* MySectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7313DE321D0968F002B11D3 /* MySectionHeaderView.m */; };
+		F76D560921DDA5FA0011D709 /* TestSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76D560821DDA5FA0011D709 /* TestSegmentViewController.m */; };
+		F76D560F21DDA6B40011D709 /* BBComicSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F76D560D21DDA6B30011D709 /* BBComicSegmentView.m */; };
+		F76D561021DDA6B40011D709 /* BBComicSegmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F76D560E21DDA6B40011D709 /* BBComicSegmentItem.m */; };
+		F76D561721DDE8AD0011D709 /* SegmentCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F76D561621DDE8AD0011D709 /* SegmentCalendarModel.m */; };
+		F76D563121DEF7F20011D709 /* BBComicHomeCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F76D562F21DEF7F20011D709 /* BBComicHomeCalendarModel.m */; };
 		F771E82A21C9F6FF00DE2C28 /* HXNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E81221C9F6FE00DE2C28 /* HXNavBar.m */; };
 		F771E82B21C9F6FF00DE2C28 /* HXMessageAlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E81421C9F6FE00DE2C28 /* HXMessageAlertTool.m */; };
 		F771E82C21C9F6FF00DE2C28 /* UIImage+LLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F771E81721C9F6FE00DE2C28 /* UIImage+LLExtension.m */; };
@@ -101,6 +106,16 @@
 		F7313DC921D084D2002B11D3 /* UIColorGradientVCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIColorGradientVCtrl.m; sourceTree = "<group>"; };
 		F7313DE221D0968F002B11D3 /* MySectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySectionHeaderView.h; sourceTree = "<group>"; };
 		F7313DE321D0968F002B11D3 /* MySectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySectionHeaderView.m; sourceTree = "<group>"; };
+		F76D560721DDA5FA0011D709 /* TestSegmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSegmentViewController.h; sourceTree = "<group>"; };
+		F76D560821DDA5FA0011D709 /* TestSegmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestSegmentViewController.m; sourceTree = "<group>"; };
+		F76D560B21DDA6B30011D709 /* BBComicSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBComicSegmentView.h; sourceTree = "<group>"; };
+		F76D560C21DDA6B30011D709 /* BBComicSegmentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBComicSegmentItem.h; sourceTree = "<group>"; };
+		F76D560D21DDA6B30011D709 /* BBComicSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBComicSegmentView.m; sourceTree = "<group>"; };
+		F76D560E21DDA6B40011D709 /* BBComicSegmentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBComicSegmentItem.m; sourceTree = "<group>"; };
+		F76D561521DDE8AD0011D709 /* SegmentCalendarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentCalendarModel.h; sourceTree = "<group>"; };
+		F76D561621DDE8AD0011D709 /* SegmentCalendarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentCalendarModel.m; sourceTree = "<group>"; };
+		F76D562F21DEF7F20011D709 /* BBComicHomeCalendarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBComicHomeCalendarModel.m; sourceTree = "<group>"; };
+		F76D563021DEF7F20011D709 /* BBComicHomeCalendarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBComicHomeCalendarModel.h; sourceTree = "<group>"; };
 		F771E81221C9F6FE00DE2C28 /* HXNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXNavBar.m; sourceTree = "<group>"; };
 		F771E81321C9F6FE00DE2C28 /* XZMBProgressManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZMBProgressManager.h; sourceTree = "<group>"; };
 		F771E81421C9F6FE00DE2C28 /* HXMessageAlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXMessageAlertTool.m; sourceTree = "<group>"; };
@@ -272,6 +287,28 @@
 			path = MyAppUITests;
 			sourceTree = "<group>";
 		};
+		F76D560A21DDA6A60011D709 /* SegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				F76D560C21DDA6B30011D709 /* BBComicSegmentItem.h */,
+				F76D560E21DDA6B40011D709 /* BBComicSegmentItem.m */,
+				F76D560B21DDA6B30011D709 /* BBComicSegmentView.h */,
+				F76D560D21DDA6B30011D709 /* BBComicSegmentView.m */,
+			);
+			path = SegmentView;
+			sourceTree = "<group>";
+		};
+		F76D561421DDE8710011D709 /* TestModels */ = {
+			isa = PBXGroup;
+			children = (
+				F76D563021DEF7F20011D709 /* BBComicHomeCalendarModel.h */,
+				F76D562F21DEF7F20011D709 /* BBComicHomeCalendarModel.m */,
+				F76D561521DDE8AD0011D709 /* SegmentCalendarModel.h */,
+				F76D561621DDE8AD0011D709 /* SegmentCalendarModel.m */,
+			);
+			path = TestModels;
+			sourceTree = "<group>";
+		};
 		F771E81121C9F6FE00DE2C28 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +385,7 @@
 		F771E84521C9FDE400DE2C28 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				F76D561421DDE8710011D709 /* TestModels */,
 				F771E84621C9FDE400DE2C28 /* TestView */,
 				F771E84921C9FDE400DE2C28 /* TestVC */,
 			);
@@ -357,6 +395,7 @@
 		F771E84621C9FDE400DE2C28 /* TestView */ = {
 			isa = PBXGroup;
 			children = (
+				F76D560A21DDA6A60011D709 /* SegmentView */,
 				F78C9E1521D3334C00E4AC6D /* DDGBannerScrollView */,
 				F771E84721C9FDE400DE2C28 /* MyButton.h */,
 				F771E84821C9FDE400DE2C28 /* MyButton.m */,
@@ -379,6 +418,8 @@
 				F771E85D21CA2F7900DE2C28 /* UIAleartViewController.m */,
 				F7313DC821D084D2002B11D3 /* UIColorGradientVCtrl.h */,
 				F7313DC921D084D2002B11D3 /* UIColorGradientVCtrl.m */,
+				F76D560721DDA5FA0011D709 /* TestSegmentViewController.h */,
+				F76D560821DDA5FA0011D709 /* TestSegmentViewController.m */,
 			);
 			path = TestVC;
 			sourceTree = "<group>";
@@ -689,18 +730,23 @@
 				F771E82E21C9F6FF00DE2C28 /* HXStaticConstant.m in Sources */,
 				F771E85A21C9FDF100DE2C28 /* BaseViewController.m in Sources */,
 				F771E84C21C9FDE400DE2C28 /* MyButton.m in Sources */,
+				F76D560921DDA5FA0011D709 /* TestSegmentViewController.m in Sources */,
 				F771E83D21C9FDD700DE2C28 /* MineViewController.m in Sources */,
 				F771E82B21C9F6FF00DE2C28 /* HXMessageAlertTool.m in Sources */,
 				F771E82F21C9F6FF00DE2C28 /* RefreshTool.m in Sources */,
+				F76D563121DEF7F20011D709 /* BBComicHomeCalendarModel.m in Sources */,
 				F78C9E2621D3334C00E4AC6D /* UIView+DDGExtension.m in Sources */,
 				F78C9E2A21D3334C00E4AC6D /* DDGAnimatedDotView.m in Sources */,
+				F76D560F21DDA6B40011D709 /* BBComicSegmentView.m in Sources */,
 				F771E83021C9F6FF00DE2C28 /* Foundation+Log.m in Sources */,
+				F76D561721DDE8AD0011D709 /* SegmentCalendarModel.m in Sources */,
 				F771E83321C9F6FF00DE2C28 /* UIView+LLExtension.m in Sources */,
 				F715B75521D38DD8008F0BA6 /* DDGAnimationPageControl.m in Sources */,
 				F722E24221C88CA300E79AA6 /* main.m in Sources */,
 				F7313DE421D0968F002B11D3 /* MySectionHeaderView.m in Sources */,
 				F771E86121CA2FB000DE2C28 /* MyAleartView.m in Sources */,
 				F771E84321C9FDDF00DE2C28 /* MyTabViewController.m in Sources */,
+				F76D561021DDA6B40011D709 /* BBComicSegmentItem.m in Sources */,
 				F78C9E2921D3334C00E4AC6D /* DDGPageControl.m in Sources */,
 				F78C9E2521D3334C00E4AC6D /* DDGBannerScrollView.m in Sources */,
 				F771E84D21C9FDE400DE2C28 /* TestmMyButtonVCtrl.m in Sources */,

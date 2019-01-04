@@ -10,6 +10,8 @@
 #import "TestmMyButtonVCtrl.h"
 #import "UIAleartViewController.h"
 #import "UIColorGradientVCtrl.h"
+#import "TestSegmentViewController.h"
+
 
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -43,6 +45,9 @@
         [self.navigationController pushViewController:alVC animated:YES];
     } else if (indexPath.row == 2) {
         UIColorGradientVCtrl *cgVC = [[UIColorGradientVCtrl alloc]init];
+        [self.navigationController pushViewController:cgVC animated:YES];
+    } else if (indexPath.row == 3) {
+        TestSegmentViewController *cgVC = [[TestSegmentViewController alloc]init];
         [self.navigationController pushViewController:cgVC animated:YES];
     }
 }

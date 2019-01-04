@@ -68,7 +68,7 @@ typedef enum : NSUInteger {
  
  @param page 当前页面的索引
  */
-- (void)updateCurrentPage:(NSInteger)page ;
+- (void)setCurrentPage:(NSInteger)page ;
 
 
 /**

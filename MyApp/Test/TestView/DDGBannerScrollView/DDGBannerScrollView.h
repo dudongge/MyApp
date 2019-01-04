@@ -11,12 +11,13 @@
 
 typedef enum {
     DDGBannerScrollViewPageContolAlimentRight,
-    DDGBannerScrollViewPageContolAlimentCenter
+    DDGBannerScrollViewPageContolAlimentCenter,
+    DDGBannerScrollViewPageContolAlimentLeft
 } DDGBannerScrollViewPageContolAliment;
 
 typedef enum {
     DDGBannerScrollViewPageContolStyleClassic,        // 系统自带经典样式
-    DDGBannerScrollViewPageContolStyleAnimated,       // 动画效果pagecontrol
+    DDGBannerScrollViewPageContolStyleAnimated,       // 动画效果--直接显示
     DDGBannerScrollViewPageControlHorizontal,         // 水平动态滑块
     DDGBannerScrollViewPageImageRotation,             // 旋转前进
     DDGBannerScrollViewPageImageJump,                 // 以半圆跳跃前进

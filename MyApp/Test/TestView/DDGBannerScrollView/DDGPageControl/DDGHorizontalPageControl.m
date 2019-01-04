@@ -30,23 +30,15 @@
     return self;
 }
 
-
 - (void)_initSubViews {
-    _dotNomalSize = CGSizeMake(10, 10);
-    _dotBigSize = CGSizeMake(30, 10);
-    _dotMargin = 10;
+    _dotNomalSize = CGSizeMake(6, 6);
+    _dotBigSize = CGSizeMake(18, 6);
+    _dotMargin = 6;
     _startPage = 0;
     _dotAlpha = 0.5;
 }
 
-
-
-
-- (void)updateCurrentPage:(NSInteger)page {
-    
-}
-
-- (void)updateCurrentPage:(NSInteger)page offset:(CGFloat)offset {
+- (void)setCurrentPage:(NSInteger)page {
     CGFloat dotNomalWidth  = self.dotNomalSize.width;
     CGFloat dotNomalHeight = self.dotNomalSize.height;
     CGFloat dotBigWidth    = self.dotBigSize.width;
@@ -66,19 +58,25 @@
             }
         }
     }];
+}
+
+- (void)updateCurrentPage:(NSInteger)page offset:(CGFloat)offset {
     
 }
 
 - (void)setDotNomalSize:(CGSize)dotNomalSize {
     _dotNomalSize = dotNomalSize;
+    [self updateColor];
 }
 
 - (void)setDotBigSize:(CGSize)dotBigSize {
     _dotNomalSize = dotBigSize;
+     [self updateColor];
 }
 
 - (void)setDotMargin:(CGFloat)dotMargin {
     _dotMargin = dotMargin;
+    [self updateColor];
 }
 
 - (void)setCurrentPageColor:(UIColor *)currentPageColor {
@@ -107,6 +105,7 @@
         [self pageDots];
     }
     else [self pageDots];
+    [self updateColor];
 }
 
 - (void)setStartPagee:(NSInteger)startPage {
@@ -123,17 +122,22 @@
     CGFloat dotNomalHeight = self.dotNomalSize.height;
     CGFloat dotBigWidth    = self.dotBigSize.width;
     CGFloat dotBigHeight   = self.dotBigSize.height;
+     [self pageDots];
     for (int i = 0; i < self.pages; i ++) {
         if (_startPage == i) {
             self.pageDots[i].frame = CGRectMake(i * (dotNomalWidth + self.dotMargin), 0, dotBigWidth, dotBigHeight);
-            self.pageDots[i].backgroundColor = self.currentPageColor;
+            self.pageDots[i].layer.cornerRadius = self.pageDots[i].frame.size.height / 2.0;
+            self.pageDots[i].alpha = _dotAlpha ? _dotAlpha : 0.5 ;
+            self.pageDots[i].backgroundColor = (self.currentPageColor ? self.currentPageColor : UIColor.whiteColor);
         } else {
             if (i < _startPage) {
                 self.pageDots[i].frame = CGRectMake(i * (dotNomalWidth + self.dotMargin), 0, dotNomalWidth, dotNomalHeight);
             } else {
                 self.pageDots[i].frame = CGRectMake((dotBigWidth - dotNomalWidth ) + i * (self.dotMargin + dotNomalWidth), 0, dotNomalWidth, dotNomalHeight);
             }
-            self.pageDots[i].backgroundColor = self.normalPageColor;
+            self.pageDots[i].alpha = _dotAlpha ? _dotAlpha : 0.5 ;
+            self.pageDots[i].layer.cornerRadius = self.pageDots[i].frame.size.height / 2.0;
+            self.pageDots[i].backgroundColor = (self.normalPageColor ? self.normalPageColor : UIColor.grayColor);
         }
     }
 }
@@ -166,9 +170,6 @@
     return _pageDots;
 }
 
-
-
-
 - (void)rotationImageView:(UIImageView *)imageView {
     CABasicAnimation* rotationAnimation;
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -178,7 +179,6 @@
     rotationAnimation.repeatCount = 1;
     [imageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
-
 
 - (void)dealloc {
     NSLog(@"dealloc--DDGHorizontalPageControl");

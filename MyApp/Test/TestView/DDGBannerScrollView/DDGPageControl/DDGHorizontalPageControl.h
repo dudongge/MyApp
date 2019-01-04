@@ -57,7 +57,7 @@
 
  @param page 当前页面的索引
  */
-- (void)updateCurrentPage:(NSInteger)page ;
+- (void)setCurrentPage:(NSInteger)page ;
 
 ///暂时没有用
 - (void)updateCurrentPage:(NSInteger)page offset:(CGFloat)offset;

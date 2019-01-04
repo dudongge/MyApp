@@ -12,19 +12,15 @@ static CGFloat const kAnimateDuration = 1;
 
 @implementation DDGAnimatedDotView
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         [self initialization];
     }
-    
     return self;
 }
 
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initialization];
@@ -33,24 +29,20 @@ static CGFloat const kAnimateDuration = 1;
 }
 
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self initialization];
     }
-    
     return self;
 }
 
-- (void)setDotColor:(UIColor *)dotColor
-{
+- (void)setDotColor:(UIColor *)dotColor {
     _dotColor = dotColor;
     self.layer.borderColor  = dotColor.CGColor;
 }
 
-- (void)initialization
-{
+- (void)initialization {
     _dotColor = [UIColor whiteColor];
     self.backgroundColor    = [UIColor clearColor];
     self.layer.cornerRadius = CGRectGetWidth(self.frame) / 2;
@@ -59,8 +51,7 @@ static CGFloat const kAnimateDuration = 1;
 }
 
 
-- (void)changeActivityState:(BOOL)active
-{
+- (void)changeActivityState:(BOOL)active {
     if (active) {
         [self animateToActiveState];
     } else {
@@ -69,16 +60,14 @@ static CGFloat const kAnimateDuration = 1;
 }
 
 
-- (void)animateToActiveState
-{
+- (void)animateToActiveState {
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:-20 options:UIViewAnimationOptionCurveLinear animations:^{
         self.backgroundColor = self->_dotColor;
         self.transform = CGAffineTransformMakeScale(1.4, 1.4);
     } completion:nil];
 }
 
-- (void)animateToDeactiveState
-{
+- (void)animateToDeactiveState {
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.backgroundColor = [UIColor clearColor];
         self.transform = CGAffineTransformIdentity;

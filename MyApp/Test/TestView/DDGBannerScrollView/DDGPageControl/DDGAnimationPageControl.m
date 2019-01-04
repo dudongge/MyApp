@@ -72,15 +72,15 @@
 
 
 - (void)_initSubViews {
-    _dotNomalSize = CGSizeMake(20, 20);
-    _dotBigSize = CGSizeMake(30, 30);
-    _dotMargin = 20;
+    _dotNomalSize = CGSizeMake(10, 10);
+    _dotBigSize = CGSizeMake(16, 16);
+    _dotMargin = 10;
     _startPage = 0;
     _dotAlpha = 0.5;
     _animationType = DDGAnimationPageControlNoamal;
 }
 
-- (void)updateCurrentPage:(NSInteger)page {
+- (void)setCurrentPage:(NSInteger)page {
     CGFloat dotNomalWidth  = self.dotNomalSize.width;
     CGFloat dotBigWidth    = self.dotBigSize.width;
     CGFloat dotBigHeight   = self.dotBigSize.height;
@@ -110,7 +110,7 @@
         } else if (self.animationType == DDGAnimationPageControlRotation) {
             [UIView animateWithDuration:1.0 animations:^{
                 self.animationImageView.frame = CGRectMake(currentImageX, 0, dotBigWidth, dotBigHeight);
-                [self startrRotationImageView:self.animationImageView duration:1.0 clockwise:(currentImageX > lastImageViewX)];
+                [self startrRotationImageView:self.animationImageView duration:0.9 clockwise:(currentImageX > lastImageViewX)];
             }];
         } else if (self.animationType == DDGAnimationPageControlJump) {
             [UIView animateWithDuration:1.0 animations:^{
@@ -120,8 +120,8 @@
                 } else{
                     controlPoint = CGPointMake(currentImageX - (self.dotMargin + dotNomalWidth - dotBigWidth) / 2.0 + (self.dotMargin + dotNomalWidth), (dotBigHeight) / 2.0);
                 }
-                [self startrRotationImageView:self.animationImageView duration:1.0 controlPoint:controlPoint clockwise:(currentImageX > lastImageViewX)];
-                [self startrRotationImageView:self.animationImageView duration:1.0 clockwise:(currentImageX > lastImageViewX)];
+                [self startrRotationImageView:self.animationImageView duration:0.9 controlPoint:controlPoint clockwise:(currentImageX > lastImageViewX)];
+                [self startrRotationImageView:self.animationImageView duration:0.9 clockwise:(currentImageX > lastImageViewX)];
             } completion:^(BOOL finished) {
                 if (finished) {
                     self.animationImageView.frame = CGRectMake(currentImageX, 0, dotBigWidth, dotBigHeight);
@@ -133,14 +133,17 @@
 
 - (void)setDotNomalSize:(CGSize)dotNomalSize {
     _dotNomalSize = dotNomalSize;
+    [self updatePageDots];
 }
 
 - (void)setDotBigSize:(CGSize)dotBigSize {
-    _dotNomalSize = dotBigSize;
+    _dotBigSize = dotBigSize;
+    [self updatePageDots];
 }
 
 - (void)setDotMargin:(CGFloat)dotMargin {
     _dotMargin = dotMargin;
+    [self updatePageDots];
 }
 
 - (void)setPages:(NSInteger)pages {
@@ -155,7 +158,7 @@
 
 - (void)setStartPagee:(NSInteger)startPage {
     _startPage = startPage;
-    [self updateCurrentPage:startPage];
+    [self setCurrentPage:startPage];
 }
 
 - (void)setDotAlpha:(CGFloat)dotAlpha {
@@ -172,6 +175,7 @@
     for (UIImageView *page in self.pageDots) {
         page.image = normalPageImage;
     }
+    [self updatePageDots];
 }
 
 - (void)setCurrentPageImage:(UIImage *)currentPageImage {
@@ -182,7 +186,7 @@
     }
     else [self pageDots];
     self.animationImageView.image = currentPageImage;
-    
+    [self updatePageDots];
 }
 
 - (NSMutableArray *)pageDots {
@@ -206,6 +210,22 @@
         }
     }
     return _pageDots;
+}
+
+- (void)updatePageDots {
+    CGFloat dotNomalWidth  = self.dotNomalSize.width;
+    CGFloat dotNomalHeight = self.dotNomalSize.height;
+    CGFloat dotBigWidth    = self.dotBigSize.width;
+    CGFloat dotBigHeight   = self.dotBigSize.height;
+    [self pageDots];
+    for (int i = 0; i < self.pages; i ++) {
+        if (_startPage == i) {
+            self.animationImageView.frame = CGRectMake( self.dotMargin - (dotBigWidth - dotNomalWidth) / 2.0, 0, dotBigWidth, dotBigHeight);
+        }
+        _pageDots[i].image = _normalPageImage;
+        _animationImageView.image = _currentPageImage;
+        _pageDots[i].frame = CGRectMake(self.dotMargin + i * (self.dotMargin + dotNomalWidth), (dotBigHeight - dotNomalHeight) / 2.0, dotNomalWidth, dotNomalHeight);
+    }
 }
 
 - (void)startrRotationImageView:(UIImageView *)imageView duration:(CGFloat)duration clockwise:(BOOL)clockwise {
