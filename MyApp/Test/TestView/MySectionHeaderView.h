@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyButton.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MySectionHeaderView : UITableViewHeaderFooterView
-@property (nonatomic, strong) MyButton *showButton;
+@property (nonatomic, strong) UIButton *showButton;
 @property (nonatomic, copy) void(^showBlock)(BOOL);
+- (void)updateTitle:(NSString *)title;
 @end
 
 NS_ASSUME_NONNULL_END

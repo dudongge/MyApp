@@ -21,7 +21,7 @@
 #import "XZMBProgressManager.h"
 #import "RefreshTool.h"
 //#import "TZImagePickerController.h"
-#import "AFNetworking.h"
+//#import "AFNetworking.h"
 #import "HXStaticConstant.h"
 #import "YNPageViewController.h"
 //屏幕宽度

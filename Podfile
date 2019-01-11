@@ -7,10 +7,11 @@ target 'MyApp' do
 
   	pod 'MBProgressHUD'
   	pod 'MJRefresh'
-	pod 'SDWebImage'
-	pod 'Masonry'
-	pod 'AFNetworking'
+    pod 'SDWebImage'
+    pod 'Masonry'
+    #pod 'AFNetworking'
     pod 'VTMagic'
+    #pod 'YYModel'
     pod 'YNPageViewController'
     
   target 'MyAppTests' do

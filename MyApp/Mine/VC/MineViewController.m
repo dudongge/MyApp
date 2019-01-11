@@ -11,15 +11,22 @@
 #import "UIColor+MyExtension.h"
 #import "DDGHorizontalPageControl.h"
 #import "DDGAnimationPageControl.h"
+#import "AFNetworking.h"
+#import "WeatherInfo.h"
+#import "CatalogueListAppModel.h"
+
 
 @interface MineViewController ()<DDGBannerScrollViewDelegate>
 
-@property (nonatomic, strong) DDGBannerScrollView *cycleScrollView;
+@property (nonatomic, strong) DDGBannerScrollView *bannerScrollView;
+@property (nonatomic, strong) DDGBannerScrollView *midBannerScrollView;
 @property (nonatomic, strong) UIView *bgHeaderView;
+@property (nonatomic, strong) UIView *midHeaderView;
+@property (nonatomic, strong) UIView *bgRotationView;
 @property (nonatomic, strong) NSMutableArray *changeColors;
-@property (nonatomic, strong) UIImageView *rotationImageView;
-@property (nonatomic, strong) DDGHorizontalPageControl *DDGHorizontalPageControl;
-@property (nonatomic, strong) DDGAnimationPageControl *DDGAnimationPageControl;
+@property (nonatomic, strong) NSMutableArray *midChangeColors;
+@property (nonatomic, strong) DDGHorizontalPageControl *horizontalPageControl;
+@property (nonatomic, strong) DDGAnimationPageControl *animationPageControl;
 @property (nonatomic, strong) DDGAnimationPageControl *myAnimationJumpControl;
 @property (nonatomic, strong) DDGAnimationPageControl *myAnimationRotationControl;
 @end
@@ -28,44 +35,79 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview: self.bgRotationView];
     
     [self.view addSubview:self.bgHeaderView];
-    [self.bgHeaderView addSubview:self.cycleScrollView];
-    //[self.view addSubview:self.rotationImageView];
-    [self.view addSubview: self.DDGHorizontalPageControl];
-    
-    [self.view addSubview: self.DDGAnimationPageControl];
-    [self.view addSubview: self.myAnimationJumpControl];
-    [self.view addSubview: self.myAnimationRotationControl];
-    
-    self.cycleScrollView.pageControlAliment = DDGBannerScrollViewPageContolAlimentRight;
-    self.cycleScrollView.pageControlStyle = DDGBannerScrollViewPageControlHorizontal;
-    //self.cycleScrollView.currentPageDotColor = [UIColor whiteColor];
-    //self.cycleScrollView.pageDotColor = [UIColor whiteColor];
-    self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"cache_delete"];
-    self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"cache_pause"];
-    self.cycleScrollView.pageDotColor = UIColor.greenColor;
-    self.cycleScrollView.currentPageDotColor = UIColor.redColor;
-    __weak typeof(self) weakSelf = self;;
-    self.cycleScrollView.cycleScrollViewBlock = ^(NSInteger offset) {
-        [weakSelf handelBannerBgColorWithOffset:offset];
-    };
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (!self) return;
-       
-    });
-    
-    //[self rotationImageView:self.rotationImageView];
-    [UIView animateWithDuration:2.0 animations:^{
-        self.rotationImageView.frame = CGRectMake(150, 300, 50, 50);
-    } completion:^(BOOL finished) {
-        
-    }];
-    [self rotationImageView:self.rotationImageView];
-    [self startrRotationImageView:self.rotationImageView duration:2.0 controlPoint:CGPointMake(0, 0)];
+    [self.bgHeaderView addSubview:self.bannerScrollView];
+    self.bannerScrollView.pageControlAliment = DDGBannerScrollViewPageContolAlimentRight;
+    self.bannerScrollView.pageControlStyle = DDGBannerScrollViewPageImageJump;
+    self.bannerScrollView.pageDotImage = [UIImage imageNamed:@"page_normal"];
+    self.bannerScrollView.currentPageDotImage = [UIImage imageNamed:@"page_current"];
+    self.bannerScrollView.pageDotColor = UIColor.greenColor;
+    self.bannerScrollView.currentPageDotColor = UIColor.redColor;
     
    
+    [self.bgRotationView addSubview: self.horizontalPageControl];
+    [self.bgRotationView addSubview: self.animationPageControl];
+    [self.bgRotationView addSubview: self.myAnimationJumpControl];
+    [self.bgRotationView addSubview: self.myAnimationRotationControl];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!self) return;
+//        [self.view addSubview:self.midHeaderView];
+//        [self.midHeaderView addSubview: self.midBannerScrollView];
+//        self.midBannerScrollView.pageControlAliment = DDGBannerScrollViewPageContolAlimentRight;
+//        self.midBannerScrollView.pageControlStyle = DDGBannerScrollViewPageImageAnimated;
+//        self.midBannerScrollView.pageDotImage = [UIImage imageNamed:@"page_normal"];
+//        self.midBannerScrollView.currentPageDotImage = [UIImage imageNamed:@"page_current"];
+    });
+    
+    
+    __weak typeof(self) weakSelf = self;;
+    self.bannerScrollView.cycleScrollViewBlock = ^(NSInteger offset) {
+        [weakSelf handelBannerBgColorWithOffset:offset];
+    };
+    
+    self.midBannerScrollView.cycleScrollViewBlock = ^(NSInteger offset) {
+        [weakSelf handelMidBannerBgColorWithOffset:offset];
+    };
+    
+    [self testnet];
+    
 }
+
+- (void)testnet {
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
+    [manager GET:@"http://www.weather.com.cn/data/sk/101010100.html" parameters:nil headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //NSLog(@"%@", responseObject);
+        WeatherInfo *weather = [WeatherInfo yy_modelWithDictionary:responseObject[@"weatherinfo"]];
+        NSLog(@"%@", weather.city);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+//    [manager GET:@"https://api.apiopen.top/searchAuthors" parameters:@{@"name":@"李白"} headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"%@", responseObject);
+//        //WeatherInfo *weather = [WeatherInfo yy_modelWithDictionary:responseObject[@"weatherinfo"]];
+//        //NSLog(@"%@", weather.city);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//
+//    }];
+    
+    [manager POST:@"http://rap2api.taobao.org/app/mock/24982/catalogueList" parameters:@{@"courseIdBODY":@"1"} headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+         CatalogueListAppModel *mode = [CatalogueListAppModel yy_modelWithDictionary:responseObject[@"data"]];
+      
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -81,20 +123,18 @@
 }
 
 - (void)cycleScrollView:(DDGBannerScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
-    [self.DDGHorizontalPageControl updateCurrentPage:index offset:0];
-    [self.DDGAnimationPageControl setCurrentPage:index];
+    [self.horizontalPageControl setCurrentPage:index];
+    [self.animationPageControl setCurrentPage:index];
     [self.myAnimationJumpControl setCurrentPage:index];
     [self.myAnimationRotationControl setCurrentPage:index];
-    //[self rotationImageView:self.rotationImageView];
-    //[self startrRotationImageView:self.rotationImageView duration:2.0 controlPoint:CGPointMake(0, 0)];
 }
 
 //根据偏移量计算设置banner背景颜色
 - (void)handelBannerBgColorWithOffset:(NSInteger )offset {
     if (1 == self.changeColors.count) return;
-    NSInteger offsetCurrent = offset % (int)self.cycleScrollView.bounds.size.width ;
-    float rate = offsetCurrent / self.cycleScrollView.bounds.size.width ;
-    NSInteger currentPage = offset / (int)self.cycleScrollView.bounds.size.width;
+    NSInteger offsetCurrent = offset % (int)self.bannerScrollView.bounds.size.width ;
+    float rate = offsetCurrent / self.bannerScrollView.bounds.size.width ;
+    NSInteger currentPage = offset / (int)self.bannerScrollView.bounds.size.width;
     UIColor *startPageColor;
     UIColor *endPageColor;
     if (currentPage == self.changeColors.count - 1) {
@@ -111,14 +151,45 @@
     self.bgHeaderView.backgroundColor = currentToLastColor;
 }
 
-- (DDGBannerScrollView *)cycleScrollView {
-    if (!_cycleScrollView) {
-        CGRect frame = CGRectMake(30, 88, screen_width - 60, screen_width * 0.37);
-        _cycleScrollView = [DDGBannerScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:[UIImage imageNamed:@"cache_cancel_all"]];
-        
-        _cycleScrollView.imageURLStringsGroup = @[@"0",@"1",@"2",@"1",@"2"];
+//根据偏移量计算设置banner背景颜色
+- (void)handelMidBannerBgColorWithOffset:(NSInteger )offset {
+    if (1 == self.midChangeColors.count) return;
+    NSInteger offsetCurrent = offset % (int)self.midBannerScrollView.bounds.size.width ;
+    float rate = offsetCurrent / self.midBannerScrollView.bounds.size.width ;
+    NSInteger currentPage = offset / (int)self.midBannerScrollView.bounds.size.width;
+    UIColor *midStartPageColor;
+    UIColor *midEndPageColor;
+    if (currentPage == self.midChangeColors.count - 1) {
+        midStartPageColor = self.midChangeColors[currentPage];
+        midEndPageColor = self.midChangeColors[0];
+    } else {
+        if (currentPage  == self.midChangeColors.count) {
+            return;
+        }
+        midStartPageColor = self.midChangeColors[currentPage];
+        midEndPageColor = self.midChangeColors[currentPage + 1];
     }
-    return _cycleScrollView;
+    UIColor *midCurrentToLastColor = [UIColor getColorWithColor:midStartPageColor andCoe:rate andEndColor:midEndPageColor];
+    self.midHeaderView.backgroundColor = midCurrentToLastColor;
+}
+
+- (DDGBannerScrollView *)bannerScrollView {
+    if (!_bannerScrollView) {
+        CGRect frame = CGRectMake(30, 88, screen_width - 60, screen_width * 0.37);
+        _bannerScrollView = [DDGBannerScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:[UIImage imageNamed:@"cache_cancel_all"]];
+        _bannerScrollView.imageURLStringsGroup = @[@"3",@"1",@"2",@"1",@"2"];
+    }
+    return _bannerScrollView;
+}
+
+- (DDGBannerScrollView *)midBannerScrollView {
+    if (!_midBannerScrollView) {
+        
+        CGRect frame = CGRectMake(30, 88, screen_width - 60, screen_width * 0.37);
+        _midBannerScrollView = [DDGBannerScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:[UIImage imageNamed:@"cache_cancel_all"]];
+        _midBannerScrollView.imageURLStringsGroup = @[@"2",@"0",@"1",@"12",@"11"];
+    }
+    return _midBannerScrollView;
 }
 
 - (UIView *)bgHeaderView {
@@ -127,6 +198,14 @@
        _bgHeaderView.frame = CGRectMake(0,0, screen_width , screen_width * 0.37 + 120);
     }
     return _bgHeaderView;
+}
+
+- (UIView *)midHeaderView {
+    if (!_midHeaderView) {
+        _midHeaderView = [[UIView alloc]init];
+        _midHeaderView.frame = CGRectMake(0,screen_width * 0.37 + 130, screen_width, screen_width * 0.37 + 120);
+    }
+    return _midHeaderView;
 }
 
 - (NSMutableArray *)changeColors {
@@ -141,31 +220,36 @@
     return _changeColors;
 }
 
-- (UIImageView *)rotationImageView {
-    if (!_rotationImageView) {
-        _rotationImageView = [[UIImageView alloc]init];
-        _rotationImageView.image = [UIImage imageNamed:@"0"];
-        _rotationImageView.frame = CGRectMake(50, 300, 50, 50);
+- (NSMutableArray *)midChangeColors {
+    if (!_midChangeColors) {
+        UIColor *oneColor   = [UIColor colorWithHexString:@"#FD12BC" alpha:1.0];
+        UIColor *twoColor   = [UIColor colorWithHexString:@"#1BC1FF" alpha:1.0];
+        UIColor *threeColor = [UIColor colorWithHexString:@"#C82FA2" alpha:1.0];
+        UIColor *fourColor  = [UIColor colorWithHexString:@"#4BC1FF" alpha:1.0];
+        UIColor *fiveColor  = [UIColor colorWithHexString:@"#58C4A2" alpha:1.0];
+        _midChangeColors = [[NSMutableArray alloc]initWithArray:@[oneColor,twoColor,threeColor,fourColor,fiveColor]];
     }
-    return _rotationImageView;
+    return _midChangeColors;
 }
 
-- (DDGHorizontalPageControl *)DDGHorizontalPageControl {
-    if (!_DDGHorizontalPageControl) {
-        _DDGHorizontalPageControl = [[DDGHorizontalPageControl alloc]init];
-        _DDGHorizontalPageControl.frame = CGRectMake(10, 300, 360, 50);
-        _DDGHorizontalPageControl.backgroundColor = UIColor.lightGrayColor;
-        _DDGHorizontalPageControl.currentPageColor = [UIColor whiteColor];
-        _DDGHorizontalPageControl.normalPageColor = [UIColor grayColor];
-        _DDGHorizontalPageControl.pages = 5;
+- (DDGHorizontalPageControl *)horizontalPageControl {
+    if (!_horizontalPageControl) {
+        _horizontalPageControl = [[DDGHorizontalPageControl alloc]init];
+        _horizontalPageControl.frame = CGRectMake(10, 10, 360, 50);
+        _horizontalPageControl.backgroundColor = UIColor.lightGrayColor;
+        _horizontalPageControl.currentPageColor = [UIColor whiteColor];
+        _horizontalPageControl.normalPageColor = [UIColor grayColor];
+        _horizontalPageControl.dotBigSize = CGSizeMake(60, 20);
+        _horizontalPageControl.dotNomalSize = CGSizeMake(20, 20);
+        _horizontalPageControl.dotMargin = 20;
+        _horizontalPageControl.pages = 5;
     }
-    return _DDGHorizontalPageControl;
+    return _horizontalPageControl;
 }
 
-- (DDGAnimationPageControl *)DDGAnimationPageControl {
-    if (!_DDGAnimationPageControl) {
-        _DDGAnimationPageControl = [[DDGAnimationPageControl alloc]init];
-        _DDGAnimationPageControl = [DDGAnimationPageControl initWithinitWithFrame:CGRectMake(10, 400, 360, 50)
+- (DDGAnimationPageControl *)animationPageControl {
+    if (!_animationPageControl) {
+        _animationPageControl = [DDGAnimationPageControl initWithinitWithFrame:CGRectMake(10, 80, 360, 50)
                                                                             dotBigSize:CGSizeMake(30, 30)
                                                                           dotNomalSize:CGSizeMake(20, 20)
                                                                              dotMargin:20
@@ -173,16 +257,13 @@
                                                                              startPage:1
                                                                       currentPageImage:[UIImage imageNamed:@"page_current"]
                                                                        normalPageImage:[UIImage imageNamed:@"page_normal"]];
-        
-         _DDGAnimationPageControl.backgroundColor = UIColor.lightGrayColor;
     }
-    return _DDGAnimationPageControl;
+    return _animationPageControl;
 }
 
 - (DDGAnimationPageControl *)myAnimationRotationControl {
     if (!_myAnimationRotationControl) {
-        _myAnimationRotationControl = [[DDGAnimationPageControl alloc]init];
-        _myAnimationRotationControl = [DDGAnimationPageControl initWithinitWithFrame:CGRectMake(10, 500, 360, 50)
+        _myAnimationRotationControl = [DDGAnimationPageControl initWithinitWithFrame:CGRectMake(10, 150, 360, 50)
                                                                      dotBigSize:CGSizeMake(30, 30)
                                                                    dotNomalSize:CGSizeMake(20, 20)
                                                                       dotMargin:20
@@ -190,8 +271,6 @@
                                                                       startPage:1
                                                                currentPageImage:[UIImage imageNamed:@"page_current"]
                                                                 normalPageImage:[UIImage imageNamed:@"page_normal"]];
-        
-        _myAnimationRotationControl.backgroundColor = UIColor.lightGrayColor;
         _myAnimationRotationControl.animationType = DDGAnimationPageControlRotation;
     }
     return _myAnimationRotationControl;
@@ -199,8 +278,7 @@
 
 - (DDGAnimationPageControl *)myAnimationJumpControl {
     if (!_myAnimationJumpControl) {
-        _myAnimationJumpControl = [[DDGAnimationPageControl alloc]init];
-        _myAnimationJumpControl = [DDGAnimationPageControl initWithinitWithFrame:CGRectMake(10, 600, 360, 50)
+        _myAnimationJumpControl = [DDGAnimationPageControl initWithinitWithFrame:CGRectMake(10, 220, 360, 50)
                                                                          dotBigSize:CGSizeMake(30, 30)
                                                                        dotNomalSize:CGSizeMake(20, 20)
                                                                           dotMargin:20
@@ -209,40 +287,18 @@
                                                                    currentPageImage:[UIImage imageNamed:@"page_current"]
                                                                     normalPageImage:[UIImage imageNamed:@"page_normal"]];
         
-        _myAnimationJumpControl.backgroundColor = UIColor.lightGrayColor;
         _myAnimationJumpControl.animationType = DDGAnimationPageControlJump;
     }
     return _myAnimationJumpControl;
 }
 
-- (void)rotationImageView:(UIImageView *)imageView {
-    CABasicAnimation* rotationAnimation;
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
-    rotationAnimation.duration = 2.0;
-    rotationAnimation.cumulative = YES;
-    rotationAnimation.repeatCount = 1;
-    [imageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-}
-
-
-- (void)startrRotationImageView:(UIImageView *)imageView duration:(CGFloat)duration controlPoint:(CGPoint)controlPoint2 {
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-    //设置动画属性，因为是沿着贝塞尔曲线动，所以要设置为position
-    animation.keyPath = @"position";
-    //设置动画时间
-    animation.duration = duration;
-    // 告诉在动画结束的时候不要移除
-    animation.removedOnCompletion = NO;
-    // 始终保持最新的效果
-    animation.fillMode = kCAFillModeForwards;
-    CGPoint bezierPoint = CGPointMake(imageView.frame.origin.x, imageView.frame.origin.y);
-    //贝塞尔曲线
-    UIBezierPath *circlePath = [UIBezierPath bezierPathWithArcCenter:bezierPoint radius:60 startAngle:M_PI endAngle:M_PI_2 clockwise:true];
-    // 设置贝塞尔曲线路径
-    animation.path = circlePath.CGPath;
-    // 将动画对象添加到视图的layer上
-    [imageView.layer addAnimation:animation forKey:@"position"];
+- (UIView *)bgRotationView {
+    if (!_bgRotationView) {
+        _bgRotationView = [[UIView alloc]init];
+        _bgRotationView.frame = CGRectMake(10, 300, 360, 380);
+        _bgRotationView.backgroundColor = UIColor.lightGrayColor;
+    }
+    return _bgRotationView;
 }
 
 @end

@@ -11,8 +11,6 @@
 #import "DDGCollectionViewCell.h"
 #import "UIView+DDGExtension.h"
 #import "DDGPageControl.h"
-#import "SDWebImageManager.h"
-#import "UIImageView+WebCache.h"
 #import "DDGHorizontalPageControl.h"
 #import "DDGAnimationPageControl.h"
 
@@ -473,7 +471,8 @@ NSString * const ID = @"DDGBannerScrollViewCell";
 }
 
 + (void)clearImagesCache {
-    [[[SDWebImageManager sharedManager] imageCache] clearDiskOnCompletion:nil];
+    //如果用用了SDWebImageManager，可以清理
+    //[[[SDWebImageManager sharedManager] imageCache] clearDiskOnCompletion:nil];
 }
 
 #pragma mark - life circles
@@ -578,7 +577,8 @@ NSString * const ID = @"DDGBannerScrollViewCell";
     NSString *imagePath = self.imagePathsGroup[itemIndex];
     if (!self.onlyDisplayText && [imagePath isKindOfClass:[NSString class]]) {
         if ([imagePath hasPrefix:@"http"]) {
-            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage];
+            //此接口为sd_setImageWithURL 留用
+//            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage];
         } else {
             UIImage *image = [UIImage imageNamed:imagePath];
             if (!image) {
