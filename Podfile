@@ -5,7 +5,7 @@ target 'MyApp' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
-  	pod 'MBProgressHUD'
+  #pod 'MBProgressHUD'
   	pod 'MJRefresh'
     pod 'SDWebImage'
     pod 'Masonry'

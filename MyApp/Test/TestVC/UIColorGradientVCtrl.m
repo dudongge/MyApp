@@ -51,9 +51,14 @@
     self.cycleScrollView.cycleScrollViewBlock = ^(NSInteger offset) {
         [weakSelf handelBannerBgColorWithOffset:offset];
     };
+    
+    
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (!self) return;
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
         
+        
+        if (!self) return;
     });
     
     //[self rotationImageView:self.rotationImageView];
@@ -67,7 +72,11 @@
     
     
 }
-
+///** 图片滚动回调 */
+//- (void)cycleScrollView:(DDGBannerScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
+//    NSLog(@"当前页面回到%ld",(long)index);
+//
+//}
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
@@ -87,6 +96,7 @@
     [self.myAnimationJumpControl setCurrentPage:index];
     [self.myAnimationRotationControl setCurrentPage:index];
     //[self rotationImageView:self.rotationImageView];
+     NSLog(@"当前页面回到%ld",(long)index);
 }
 
 //根据偏移量计算设置banner背景颜色
@@ -97,6 +107,7 @@
     NSInteger currentPage = offset / (int)self.cycleScrollView.bounds.size.width;
     UIColor *startPageColor;
     UIColor *endPageColor;
+    NSLog(@"滚动offset%ld页",(long)currentPage);
     if (currentPage == self.changeColors.count - 1) {
         startPageColor = self.changeColors[currentPage];
         endPageColor = self.changeColors[0];
@@ -116,7 +127,7 @@
         CGRect frame = CGRectMake(30, 88, screen_width - 60, screen_width * 0.37);
         _cycleScrollView = [DDGBannerScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:[UIImage imageNamed:@"cache_cancel_all"]];
         
-        _cycleScrollView.imageURLStringsGroup = @[@"1",@"2",@"3",@"4"];
+        _cycleScrollView.imageURLStringsGroup = @[@"1",@"2",@"3"];
     }
     return _cycleScrollView;
 }
@@ -134,9 +145,9 @@
         UIColor *oneColor   = [UIColor colorWithHexString:@"#FDC0BC" alpha:1.0];
         UIColor *twoColor   = [UIColor colorWithHexString:@"#CBC1FF" alpha:1.0];
         UIColor *threeColor = [UIColor colorWithHexString:@"#C8CFA2" alpha:1.0];
-        UIColor *fourColor  = [UIColor colorWithHexString:@"#CBC1FF" alpha:1.0];
-        UIColor *fiveColor  = [UIColor colorWithHexString:@"#C8CFA2" alpha:1.0];
-        _changeColors = [[NSMutableArray alloc]initWithArray:@[oneColor,twoColor,threeColor,fourColor,fiveColor]];
+//        UIColor *fourColor  = [UIColor colorWithHexString:@"#CBC1FF" alpha:1.0];
+//        UIColor *fiveColor  = [UIColor colorWithHexString:@"#C8CFA2" alpha:1.0];
+        _changeColors = [[NSMutableArray alloc]initWithArray:@[oneColor,twoColor,threeColor]];//,fourColor,fiveColor
     }
     return _changeColors;
 }

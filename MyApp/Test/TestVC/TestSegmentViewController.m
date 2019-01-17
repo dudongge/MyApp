@@ -9,6 +9,7 @@
 #import "TestSegmentViewController.h"
 #import "BBComicSegmentView.h"
 #import "UIColor+MyExtension.h"
+#import "MBProgressHUD.h"
 
 @interface TestSegmentViewController ()<BBComicSegmentViewDelegate>
 @property (nonatomic, strong) BBComicSegmentView *segmentView;
@@ -36,9 +37,41 @@
     [self.view addSubview:self.changeView];
     [self.view addSubview:self.endView];
     
+    //[self showAllTextDialog:@"2341454"];
+    
+    
+    
+    //UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    //[window addSubview:label];
+    
+    [self  showAllTextDialog:@"暂时没有"];
+   
     
 }
-
+-(void)showAllTextDialog:(NSString *)str{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;//注：keyWindow当前显示界面的window
+    UIView *subView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    subView.backgroundColor = [UIColor clearColor];
+    subView.alpha = 1.0;
+    UILabel *label = [[UILabel alloc]init];
+    label.text = [NSString stringWithFormat:@"   %@   ",str];
+    label.textColor = UIColor.whiteColor;
+    label.backgroundColor = UIColor.blackColor;
+    label.layer.cornerRadius = 4.0;
+    label.clipsToBounds = YES;
+    [subView addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(subView.mas_centerX);
+        make.centerY.mas_equalTo(subView.mas_centerY);
+        make.height.mas_equalTo(40);
+    }];
+    [window addSubview:subView];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [subView removeFromSuperview];
+        if (!self) return;
+    });
+}
 - (BBComicSegmentView *)segmentView {
     if (!_segmentView) {
         _segmentView = [[BBComicSegmentView alloc]initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 60)];

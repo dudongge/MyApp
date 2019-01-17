@@ -22,6 +22,7 @@
 		F70072F921E8BCA60005918D /* CatalogueListAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F70072F321E8BCA50005918D /* CatalogueListAppModel.m */; };
 		F70072FA21E8BCA60005918D /* liveListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F70072F421E8BCA50005918D /* liveListModel.m */; };
 		F70072FB21E8BCA60005918D /* ChildrenListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F70072F621E8BCA60005918D /* ChildrenListModel.m */; };
+		F717B2A021EDAEFC00888A7A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F717B29E21EDAEFC00888A7A /* MBProgressHUD.m */; };
 		F722E23421C88CA000E79AA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F722E23321C88CA000E79AA6 /* AppDelegate.m */; };
 		F722E23A21C88CA000E79AA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F722E23821C88CA000E79AA6 /* Main.storyboard */; };
 		F722E23C21C88CA300E79AA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F722E23B21C88CA300E79AA6 /* Assets.xcassets */; };
@@ -123,6 +124,8 @@
 		F70072F721E8BCA60005918D /* CatalogueListAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalogueListAppModel.h; sourceTree = "<group>"; };
 		F70072F821E8BCA60005918D /* liveListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = liveListModel.h; sourceTree = "<group>"; };
 		F707DAB6C506256077AEF723 /* libPods-MyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F717B29E21EDAEFC00888A7A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		F717B29F21EDAEFC00888A7A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		F722E22F21C88CA000E79AA6 /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F722E23221C88CA000E79AA6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F722E23321C88CA000E79AA6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -315,6 +318,13 @@
 			path = "../../../../../../Downloads/AFNetworking-master/AFNetworking";
 			sourceTree = "<group>";
 		};
+		F717B26421ED956200888A7A /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		F722E22621C88CA000E79AA6 = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +476,7 @@
 		F771E83821C9FDD700DE2C28 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				F717B26421ED956200888A7A /* MBProgressHUD */,
 				F70072AA21E896010005918D /* AFNetworking */,
 				F700729921E8919C0005918D /* YYModel */,
 				F771E83921C9FDD700DE2C28 /* MineViewController.h */,
@@ -520,6 +531,8 @@
 		F771E84921C9FDE400DE2C28 /* TestVC */ = {
 			isa = PBXGroup;
 			children = (
+				F717B29F21EDAEFC00888A7A /* MBProgressHUD.h */,
+				F717B29E21EDAEFC00888A7A /* MBProgressHUD.m */,
 				F771E84B21C9FDE400DE2C28 /* TestmMyButtonVCtrl.h */,
 				F771E85C21CA2F7900DE2C28 /* UIAleartViewController.h */,
 				F771E85D21CA2F7900DE2C28 /* UIAleartViewController.m */,
@@ -825,6 +838,7 @@
 				F771E86121CA2FB000DE2C28 /* MyAleartView.m in Sources */,
 				F70072BE21E896010005918D /* AFSecurityPolicy.m in Sources */,
 				F7707E5E21E48F4100224279 /* DDGBannerScrollView.m in Sources */,
+				F717B2A021EDAEFC00888A7A /* MBProgressHUD.m in Sources */,
 				F70072BD21E896010005918D /* AFNetworkReachabilityManager.m in Sources */,
 				F771E84321C9FDDF00DE2C28 /* MyTabViewController.m in Sources */,
 				F7707E6121E48F4100224279 /* DDGPageControl.m in Sources */,
